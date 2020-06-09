@@ -21,6 +21,8 @@ The engine which has more resources for this research project will likely be the
 It could be integrated in this project to have more depth to the landscape.
 * [Here](https://medium.com/@peter_winslow/creating-procedural-planets-in-unity-part-1-df83ecb12e91) is an article by Peter Winslow which walks an individual through the creation of a low-poly procedural planet.
 The article only has a total of three parts; meaning as whole it will be unfinished.
+  * Winslow discusses two different type of planets, similar to Lague: one with a cube-based sphere and one with a icosahedron-based sphere.
+  He notes the differences are that the cube-based is easier to texture uniformly whereas the icosahedron-based sphere is much harder.
 
 #### Resources for Unreal Engine 4
 * [Here](https://www.reddit.com/r/unrealengine/comments/b2n3c8/procedural_planet/) is a reddit post which shows images of a low-poly planet and it cites the resources that were used (many of them were actually unity resources mentioned above).
