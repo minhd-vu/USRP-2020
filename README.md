@@ -23,6 +23,8 @@ It could be integrated in this project to have more depth to the landscape.
 The article only has a total of three parts; meaning as whole it will be unfinished.
   * Winslow discusses two different type of planets, similar to Lague: one with a cube-based sphere and one with a icosahedron-based sphere.
   He notes the differences are that the cube-based is easier to texture uniformly whereas the icosahedron-based sphere is much harder.
+  * Extrude certain parts of the planets so that there is a terrain elevation difference.
+  * Use ambient occlusion to make the ocean clear / ocean depth.
 
 #### Resources for Unreal Engine 4
 * [Here](https://www.reddit.com/r/unrealengine/comments/b2n3c8/procedural_planet/) is a reddit post which shows images of a low-poly planet and it cites the resources that were used (many of them were actually unity resources mentioned above).
