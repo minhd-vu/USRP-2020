@@ -222,10 +222,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 282840814}
+  - component: {fileID: 282840815}
   - component: {fileID: 282840813}
   - component: {fileID: 282840811}
   - component: {fileID: 282840812}
-  - component: {fileID: 282840815}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -332,7 +332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 365555217}
-  - component: {fileID: 365555216}
+  - component: {fileID: 365555218}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -340,26 +340,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &365555216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365555215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c891389222151774f9fb44cd74ef5566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_GroundMaterial: {fileID: 2100000, guid: 4df8d1aaee8737d46b73a23f8db8f656, type: 2}
-  m_OceanMaterial: {fileID: 2100000, guid: 297c693a57253724c881afe6c7ac126c, type: 2}
-  m_NumberOfContinents: 40
-  m_ContinentSizeMax: 0.19
-  m_ContinentSizeMin: 0.24
-  m_NumberOfHills: 14
-  m_HillSizeMax: 0.29
-  m_HillSizeMin: 0.23
 --- !u!4 &365555217
 Transform:
   m_ObjectHideFlags: 0
@@ -374,6 +354,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365555218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365555215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c891389222151774f9fb44cd74ef5566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GroundMaterial: {fileID: 2100000, guid: 4df8d1aaee8737d46b73a23f8db8f656, type: 2}
+  m_OceanMaterial: {fileID: 2100000, guid: 297c693a57253724c881afe6c7ac126c, type: 2}
+  m_NumberOfContinents: 5
+  m_ContinentSizeMax: 1
+  m_ContinentSizeMin: 0.1
+  m_NumberOfHills: 5
+  m_HillSizeMax: 1
+  m_HillSizeMin: 0.1
 --- !u!1 &464947256
 GameObject:
   m_ObjectHideFlags: 0
