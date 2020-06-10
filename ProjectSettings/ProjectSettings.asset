@@ -665,10 +665,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 8636f686-9a09-42f0-8de8-efd7771a7200
+  cloudProjectId: 793f2a43-0997-4501-af4e-a77f0648f99c
   framebufferDepthMemorylessMode: 0
-  projectName: Tutorial 1
-  organizationId: phastings1
+  projectName: USRP-2020
+  organizationId: sirgoldennugget
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
