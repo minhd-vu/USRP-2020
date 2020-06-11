@@ -7,20 +7,20 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Camera cam;
+    private Camera cam; // The camera we are manipulating.
 
     public float m_MouseDragSensitivity = 1.0f; // How fast does the planet spin when you click and drag?
     public float m_MouseZoomSensitivity = 1.0f; // How fast does the mouse wheel zoom you in and out?
 
-    public float minFOV = 30f;
-    public float maxFOV = 90f;
+    public float minFOV = 30f; // Minimum field of view value.
+    public float maxFOV = 90f; // Maximum field of view value.
     public float zoomSensitivity = 30f;
     public float zoomTime = 0.2f;
 
     private Vector3 m_PrevMousePosition; // In order to track how the player is dragging the mouse, we need to store what
                                          // the previous mouse position was from the last frame.
 
-    public float m_Zoom;              // How zoomed-in the camera is.
+    public float m_Zoom = 5;              // How zoomed-in the camera is.
 
     private float velocityFOV;
     private float targetFOV;
