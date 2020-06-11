@@ -255,8 +255,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MouseDragSensitivity: 200
   m_MouseZoomSensitivity: 2
-  m_MinZoom: 2
-  m_MaxZoom: 10
+  minFOV: 30
+  maxFOV: 90
+  zoomSensitivity: 30
+  zoomTime: 0.2
+  m_Zoom: 5
 --- !u!20 &282840813
 Camera:
   m_ObjectHideFlags: 0

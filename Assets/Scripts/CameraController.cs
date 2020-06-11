@@ -7,24 +7,40 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    private Camera cam;
+
     public float m_MouseDragSensitivity = 1.0f; // How fast does the planet spin when you click and drag?
     public float m_MouseZoomSensitivity = 1.0f; // How fast does the mouse wheel zoom you in and out?
 
-    public float m_MinZoom = 2.0f;  // How close to the planet can the camera get?
-    public float m_MaxZoom = 10.0f; // ...And how far?
+    public float minFOV = 30f;
+    public float maxFOV = 90f;
+    public float zoomSensitivity = 30f;
+    public float zoomTime = 0.2f;
 
-    Vector3 m_PrevMousePosition; // In order to track how the player is dragging the mouse, we need to store what
-                                 // the previous mouse position was from the last frame.
+    private Vector3 m_PrevMousePosition; // In order to track how the player is dragging the mouse, we need to store what
+                                         // the previous mouse position was from the last frame.
 
-    float   m_Zoom;              // How zoomed-in the camera is.
+    public float m_Zoom;              // How zoomed-in the camera is.
+
+    private float velocityFOV;
+    private float targetFOV;
 
     private void Start()
     {
-        // Start out by setting the zoom level to be halfway between the min and max.
-        m_Zoom = Mathf.Lerp(m_MinZoom, m_MaxZoom, 0.5f);
+        // Set the camera object.
+        cam = gameObject.GetComponent<Camera>();
+
+        // Set the intial camera fov.
+        targetFOV = cam.fieldOfView;
     }
 
-    void Update ()
+    void LateUpdate()
+    {
+        // Update the field of view.
+        cam.fieldOfView = Mathf.SmoothDamp(cam.fieldOfView, targetFOV, ref velocityFOV, zoomTime);
+    }
+
+    void Update()
     {
         Vector3 currentMousePosition = Input.mousePosition;
 
@@ -49,7 +65,7 @@ public class CameraController : MonoBehaviour
 
             // Moving the mouse left and right results in a rotation around the camera's own up axis.
 
-            Quaternion yaw   = Quaternion.AngleAxis(mouseDisplacement.x * m_MouseDragSensitivity,  transform.up);
+            Quaternion yaw = Quaternion.AngleAxis(mouseDisplacement.x * m_MouseDragSensitivity, transform.up);
 
             // And moving the mouse up and down results in a rotation around the camera's right axis.
 
@@ -61,13 +77,13 @@ public class CameraController : MonoBehaviour
             transform.localRotation = yaw * pitch * transform.localRotation;
         }
 
-        // Read the mouse wheel input, and move our zoom parameter between the minimum and maximum allowed values.
+        // Read the mouse wheel input, and move our fov parameter between the minimum and maximum allowed values.
 
         float mouseWheelInput = Input.GetAxis("Mouse ScrollWheel");
-        if(mouseWheelInput != 0.0f)
+        if (mouseWheelInput != 0.0f)
         {
-            m_Zoom += m_MouseZoomSensitivity * mouseWheelInput;
-            m_Zoom  = Mathf.Clamp(m_Zoom, m_MinZoom, m_MaxZoom);
+            targetFOV -= mouseWheelInput * zoomSensitivity;
+            targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
         }
 
         // One final step. We always want the camera to face the planet, and the simplest way to ensure that
