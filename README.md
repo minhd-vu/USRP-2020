@@ -39,6 +39,7 @@ By making this decision, I am trying to streamline the process. I am trying to m
 I created the Unity project (on version 2019.3.15f) and I chose to the Universal Render Pipeline because I wanted to the project to be viewable by a large audience.
 I plan on deploying to both web and desktop so by keeping that in mind, I knew the extra features of the High Definition Render Pipeline were unnecessary.
 I have also watched and outlined the keypoints and concepts from the videos. I will review these during Week 2 when implementing the procedurally generated planets.
+I hope to combine the work of Lague and Winslow to expand the low-poly planet to have differnt biomes and assign different environmental values to each region.
 
 * Added stars/space themed skybox.
 * Adjusted the camera controller to zoom in and out based on fov rather than distance; smooth-damp instead of lerp.
