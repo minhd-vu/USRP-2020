@@ -42,4 +42,4 @@ I have also watched and outlined the keypoints and concepts from the videos. I w
 
 * Added stars/space themed skybox.
 * Adjusted the camera controller to zoom in and out based on fov rather than distance; smooth-damp instead of lerp.
-* Fix a bug that didn't properly render the shaders.
+* Fixed a bug that didn't properly render the shaders.
