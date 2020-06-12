@@ -13,13 +13,15 @@ public class Planet : MonoBehaviour
     public Material m_GroundMaterial;
     public Material m_OceanMaterial;
 
-    public int   m_NumberOfContinents = 5;
-    public float m_ContinentSizeMax   = 1.0f;
-    public float m_ContinentSizeMin   = 0.1f;
+    public int m_Subdivisions = 4;
 
-    public int   m_NumberOfHills = 5;
-    public float m_HillSizeMax   = 1.0f;
-    public float m_HillSizeMin   = 0.1f;
+    public int m_NumberOfContinents = 5;
+    public float m_ContinentSizeMax = 1.0f;
+    public float m_ContinentSizeMin = 0.1f;
+
+    public int m_NumberOfHills = 5;
+    public float m_HillSizeMax = 1.0f;
+    public float m_HillSizeMin = 0.1f;
 
     // Internally, the Planet object stores its meshes as a child GameObjects:
     GameObject m_GroundMesh;
@@ -36,7 +38,7 @@ public class Planet : MonoBehaviour
         // to work with.
 
         InitAsIcosohedron();
-        Subdivide(3);
+        Subdivide(m_Subdivisions);
 
         // When we begin extruding polygons, we'll need each one to know who its immediate
         //neighbors are. Calculate that now.
@@ -45,10 +47,10 @@ public class Planet : MonoBehaviour
 
         // By default, everything is colored blue. As we extrude land forms, we'll change their colors to match.
 
-        Color32 colorOcean     = new Color32(  0,  80, 220,   0);
-        Color32 colorGrass     = new Color32(  0, 220,   0,   0);
-        Color32 colorDirt      = new Color32(180, 140,  20,   0);
-        Color32 colorDeepOcean = new Color32(  0,  40, 110,   0);
+        Color32 colorOcean = new Color32(0, 80, 220, 0);
+        Color32 colorGrass = new Color32(0, 220, 0, 0);
+        Color32 colorDirt = new Color32(180, 140, 20, 0);
+        Color32 colorDeepOcean = new Color32(0, 40, 110, 0);
 
         foreach (Polygon p in m_Polygons)
             p.m_Color = colorOcean;
@@ -62,7 +64,7 @@ public class Planet : MonoBehaviour
 
         // Grab polygons that are inside random spheres. These will be the basis of our planet's continents.
 
-        for(int i = 0; i < m_NumberOfContinents; i++)
+        for (int i = 0; i < m_NumberOfContinents; i++)
         {
             float continentSize = Random.Range(m_ContinentSizeMin, m_ContinentSizeMax);
 
@@ -165,42 +167,42 @@ public class Planet : MonoBehaviour
 
         float t = (1.0f + Mathf.Sqrt(5.0f)) / 2.0f;
 
-        m_Vertices.Add(new Vector3(-1,  t,  0).normalized);
-        m_Vertices.Add(new Vector3( 1,  t,  0).normalized);
-        m_Vertices.Add(new Vector3(-1, -t,  0).normalized);
-        m_Vertices.Add(new Vector3( 1, -t,  0).normalized);
-        m_Vertices.Add(new Vector3( 0, -1,  t).normalized);
-        m_Vertices.Add(new Vector3( 0,  1,  t).normalized);
-        m_Vertices.Add(new Vector3( 0, -1, -t).normalized);
-        m_Vertices.Add(new Vector3( 0,  1, -t).normalized);
-        m_Vertices.Add(new Vector3( t,  0, -1).normalized);
-        m_Vertices.Add(new Vector3( t,  0,  1).normalized);
-        m_Vertices.Add(new Vector3(-t,  0, -1).normalized);
-        m_Vertices.Add(new Vector3(-t,  0,  1).normalized);
+        m_Vertices.Add(new Vector3(-1, t, 0).normalized);
+        m_Vertices.Add(new Vector3(1, t, 0).normalized);
+        m_Vertices.Add(new Vector3(-1, -t, 0).normalized);
+        m_Vertices.Add(new Vector3(1, -t, 0).normalized);
+        m_Vertices.Add(new Vector3(0, -1, t).normalized);
+        m_Vertices.Add(new Vector3(0, 1, t).normalized);
+        m_Vertices.Add(new Vector3(0, -1, -t).normalized);
+        m_Vertices.Add(new Vector3(0, 1, -t).normalized);
+        m_Vertices.Add(new Vector3(t, 0, -1).normalized);
+        m_Vertices.Add(new Vector3(t, 0, 1).normalized);
+        m_Vertices.Add(new Vector3(-t, 0, -1).normalized);
+        m_Vertices.Add(new Vector3(-t, 0, 1).normalized);
 
         // And here's the formula for the 20 sides,
         // referencing the 12 vertices we just created.
 
-        m_Polygons.Add(new Polygon( 0, 11,  5));
-        m_Polygons.Add(new Polygon( 0,  5,  1));
-        m_Polygons.Add(new Polygon( 0,  1,  7));
-        m_Polygons.Add(new Polygon( 0,  7, 10));
-        m_Polygons.Add(new Polygon( 0, 10, 11));
-        m_Polygons.Add(new Polygon( 1,  5,  9));
-        m_Polygons.Add(new Polygon( 5, 11,  4));
-        m_Polygons.Add(new Polygon(11, 10,  2));
-        m_Polygons.Add(new Polygon(10,  7,  6));
-        m_Polygons.Add(new Polygon( 7,  1,  8));
-        m_Polygons.Add(new Polygon( 3,  9,  4));
-        m_Polygons.Add(new Polygon( 3,  4,  2));
-        m_Polygons.Add(new Polygon( 3,  2,  6));
-        m_Polygons.Add(new Polygon( 3,  6,  8));
-        m_Polygons.Add(new Polygon( 3,  8,  9));
-        m_Polygons.Add(new Polygon( 4,  9,  5));
-        m_Polygons.Add(new Polygon( 2,  4, 11));
-        m_Polygons.Add(new Polygon( 6,  2, 10));
-        m_Polygons.Add(new Polygon( 8,  6,  7));
-        m_Polygons.Add(new Polygon( 9,  8,  1));
+        m_Polygons.Add(new Polygon(0, 11, 5));
+        m_Polygons.Add(new Polygon(0, 5, 1));
+        m_Polygons.Add(new Polygon(0, 1, 7));
+        m_Polygons.Add(new Polygon(0, 7, 10));
+        m_Polygons.Add(new Polygon(0, 10, 11));
+        m_Polygons.Add(new Polygon(1, 5, 9));
+        m_Polygons.Add(new Polygon(5, 11, 4));
+        m_Polygons.Add(new Polygon(11, 10, 2));
+        m_Polygons.Add(new Polygon(10, 7, 6));
+        m_Polygons.Add(new Polygon(7, 1, 8));
+        m_Polygons.Add(new Polygon(3, 9, 4));
+        m_Polygons.Add(new Polygon(3, 4, 2));
+        m_Polygons.Add(new Polygon(3, 2, 6));
+        m_Polygons.Add(new Polygon(3, 6, 8));
+        m_Polygons.Add(new Polygon(3, 8, 9));
+        m_Polygons.Add(new Polygon(4, 9, 5));
+        m_Polygons.Add(new Polygon(2, 4, 11));
+        m_Polygons.Add(new Polygon(6, 2, 10));
+        m_Polygons.Add(new Polygon(8, 6, 7));
+        m_Polygons.Add(new Polygon(9, 8, 1));
     }
 
     public void Subdivide(int recursions)
@@ -309,9 +311,9 @@ public class Planet : MonoBehaviour
 
         stichedPolys.m_StitchedVertexThreshold = m_Vertices.Count;
 
-        stitchedEdge      = polys.CreateEdgeSet();
+        stitchedEdge = polys.CreateEdgeSet();
         var originalVerts = stitchedEdge.GetUniqueVertices();
-        var newVerts      = CloneVertices(originalVerts);
+        var newVerts = CloneVertices(originalVerts);
 
         stitchedEdge.Split(originalVerts, newVerts);
 
@@ -388,14 +390,14 @@ public class Planet : MonoBehaviour
 
         foreach (KeyValuePair<int, Vector3> kvp in inwardDirections)
         {
-            int     vertIndex       = kvp.Key;
+            int vertIndex = kvp.Key;
             Vector3 inwardDirection = kvp.Value;
 
             Vector3 vertex = m_Vertices[vertIndex];
             float originalHeight = vertex.magnitude;
 
             vertex += inwardDirection * insetDistance;
-            vertex  = vertex.normalized * originalHeight;
+            vertex = vertex.normalized * originalHeight;
             m_Vertices[vertIndex] = vertex;
         }
 
@@ -406,9 +408,9 @@ public class Planet : MonoBehaviour
     {
         PolySet newSet = new PolySet();
 
-        foreach(Polygon p in source)
+        foreach (Polygon p in source)
         {
-            foreach(int vertexIndex in p.m_Vertices)
+            foreach (int vertexIndex in p.m_Vertices)
             {
                 float distanceToSphere = Vector3.Distance(center, m_Vertices[vertexIndex]);
 
@@ -425,11 +427,11 @@ public class Planet : MonoBehaviour
 
     public GameObject GenerateMesh(string name, Material material)
     {
-        GameObject meshObject       = new GameObject(name);
+        GameObject meshObject = new GameObject(name);
         meshObject.transform.parent = transform;
 
         MeshRenderer surfaceRenderer = meshObject.AddComponent<MeshRenderer>();
-        surfaceRenderer.material     = material;
+        surfaceRenderer.material = material;
 
         Mesh terrainMesh = new Mesh();
 
@@ -438,9 +440,9 @@ public class Planet : MonoBehaviour
         int[] indices = new int[vertexCount];
 
         Vector3[] vertices = new Vector3[vertexCount];
-        Vector3[] normals  = new Vector3[vertexCount];
-        Color32[] colors   = new Color32[vertexCount];
-        Vector2[] uvs      = new Vector2[vertexCount];
+        Vector3[] normals = new Vector3[vertexCount];
+        Color32[] colors = new Color32[vertexCount];
+        Vector2[] uvs = new Vector2[vertexCount];
 
         for (int i = 0; i < m_Polygons.Count; i++)
         {
@@ -462,7 +464,7 @@ public class Planet : MonoBehaviour
             colors[i * 3 + 1] = poly.m_Color;
             colors[i * 3 + 2] = poly.m_Color;
 
-            if(poly.m_SmoothNormals)
+            if (poly.m_SmoothNormals)
             {
                 normals[i * 3 + 0] = m_Vertices[poly.m_Vertices[0]].normalized;
                 normals[i * 3 + 1] = m_Vertices[poly.m_Vertices[1]].normalized;
@@ -482,9 +484,9 @@ public class Planet : MonoBehaviour
         }
 
         terrainMesh.vertices = vertices;
-        terrainMesh.normals  = normals;
+        terrainMesh.normals = normals;
         terrainMesh.colors32 = colors;
-        terrainMesh.uv       = uvs;
+        terrainMesh.uv = uvs;
 
         terrainMesh.SetTriangles(indices, 0);
 
