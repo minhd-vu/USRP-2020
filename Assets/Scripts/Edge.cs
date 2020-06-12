@@ -22,8 +22,8 @@ public class Edge
 
     public Edge(Polygon inner_poly, Polygon outer_poly)
     {
-        m_InnerPoly  = inner_poly;
-        m_OuterPoly  = outer_poly;
+        m_InnerPoly = inner_poly;
+        m_OuterPoly = outer_poly;
         m_OuterVerts = new List<int>(2);
         m_InnerVerts = new List<int>(2);
 
@@ -53,7 +53,7 @@ public class Edge
         // The formula above will give us [1st inner poly vertex, 3rd inner poly vertex] though, so
         // we check for that situation and reverse the vertices.
 
-        if(m_InnerVerts[0] == inner_poly.m_Vertices[0] && m_InnerVerts[1] == inner_poly.m_Vertices[2])
+        if (m_InnerVerts[0] == inner_poly.m_Vertices[0] && m_InnerVerts[1] == inner_poly.m_Vertices[2])
         {
             int temp = m_InnerVerts[0];
             m_InnerVerts[0] = m_InnerVerts[1];
@@ -77,9 +77,9 @@ public class EdgeSet : HashSet<Edge>
 
     public void Split(List<int> oldVertices, List<int> newVertices)
     {
-        foreach(Edge edge in this)
+        foreach (Edge edge in this)
         {
-            for(int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 edge.m_InnerVerts[i] = newVertices[oldVertices.IndexOf(edge.m_OuterVerts[i])];
             }
@@ -113,17 +113,17 @@ public class EdgeSet : HashSet<Edge>
         var inwardDirections = new Dictionary<int, Vector3>();
         var numContributions = new Dictionary<int, int>();
 
-        foreach(Edge edge in this)
+        foreach (Edge edge in this)
         {
             Vector3 innerVertexPosition = vertexPositions[edge.m_InwardDirectionVertex];
 
-            Vector3 edgePosA   = vertexPositions[edge.m_InnerVerts[0]];
-            Vector3 edgePosB   = vertexPositions[edge.m_InnerVerts[1]];
+            Vector3 edgePosA = vertexPositions[edge.m_InnerVerts[0]];
+            Vector3 edgePosB = vertexPositions[edge.m_InnerVerts[1]];
             Vector3 edgeCenter = Vector3.Lerp(edgePosA, edgePosB, 0.5f);
 
             Vector3 innerVector = (innerVertexPosition - edgeCenter).normalized;
 
-            for(int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 int edgeVertex = edge.m_InnerVerts[i];
 
@@ -142,9 +142,9 @@ public class EdgeSet : HashSet<Edge>
 
         // Now we average the contributions that each vertex received, and we can return the result.
 
-        foreach(KeyValuePair<int, int> kvp in numContributions)
+        foreach (KeyValuePair<int, int> kvp in numContributions)
         {
-            int vertexIndex               = kvp.Key;
+            int vertexIndex = kvp.Key;
             int contributionsToThisVertex = kvp.Value;
             inwardDirections[vertexIndex] = (inwardDirections[vertexIndex] / contributionsToThisVertex).normalized;
         }

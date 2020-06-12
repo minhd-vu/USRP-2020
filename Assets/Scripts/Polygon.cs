@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Polygon
 {
-    public List<int>     m_Vertices;       // Indices of the three vertices that make up this Polygon.
+    public List<int> m_Vertices;       // Indices of the three vertices that make up this Polygon.
     public List<Vector2> m_UVs;            // The uv coordinates we want to apply at each vertex.
     public List<Polygon> m_Neighbors;      // Links to this Polygon's three neighbors.
-    public Color32       m_Color;          // What color do we want this poly to be?
-    public bool          m_SmoothNormals;  // Is this poly part of a surface that we want to look smooth?
+    public Color32 m_Color;          // What color do we want this poly to be?
+    public bool m_SmoothNormals;  // Is this poly part of a surface that we want to look smooth?
 
     public Polygon(int a, int b, int c)
     {
-        m_Vertices      = new List<int>() { a, b, c };
-        m_Neighbors     = new List<Polygon>();
-        m_UVs           = new List<Vector2>() { Vector2.zero, Vector2.zero, Vector2.zero };
+        m_Vertices = new List<int>() { a, b, c };
+        m_Neighbors = new List<Polygon>();
+        m_UVs = new List<Vector2>() { Vector2.zero, Vector2.zero, Vector2.zero };
         m_SmoothNormals = true;
 
         // Hot Pink is an excellent default color because you'll notice instantly if 
@@ -48,9 +48,9 @@ public class Polygon
 
     public void ReplaceNeighbor(Polygon oldNeighbor, Polygon newNeighbor)
     {
-        for(int i = 0; i < m_Neighbors.Count; i++)
+        for (int i = 0; i < m_Neighbors.Count; i++)
         {
-            if(oldNeighbor == m_Neighbors[i])
+            if (oldNeighbor == m_Neighbors[i])
             {
                 m_Neighbors[i] = newNeighbor;
                 return;
@@ -64,8 +64,8 @@ public class Polygon
 
 public class PolySet : HashSet<Polygon>
 {
-    public PolySet() {}
-    public PolySet(PolySet source) : base(source) {}
+    public PolySet() { }
+    public PolySet(PolySet source) : base(source) { }
 
     // If this PolySet was created by stitching existing Polys, then we store the index of the
     // last original vertex before we did the stitching. This way we can tell new vertices apart
@@ -106,13 +106,13 @@ public class PolySet : HashSet<Polygon>
 
         var edgeVertices = edgeSet.GetUniqueVertices();
 
-        foreach(Polygon poly in this)
+        foreach (Polygon poly in this)
         {
             bool polyTouchesEdge = false;
 
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                if(edgeVertices.Contains(poly.m_Vertices[i]))
+                if (edgeVertices.Contains(poly.m_Vertices[i]))
                 {
                     polyTouchesEdge = true;
                     break;
