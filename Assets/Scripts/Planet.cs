@@ -23,6 +23,10 @@ public class Planet : MonoBehaviour
     public float m_HillSizeMax = 1.0f;
     public float m_HillSizeMin = 0.1f;
 
+    // Trees that are spawned.
+    public GameObject m_Tree;
+    public float m_TreeSpawnRate;
+
     // Internally, the Planet object stores its meshes as a child GameObjects:
     GameObject m_GroundMesh;
     GameObject m_OceanMesh;
@@ -127,7 +131,7 @@ public class Planet : MonoBehaviour
         sides = Extrude(hillPolys, 0.05f);
         sides.ApplyColor(colorDirt);
 
-        //Hills have dark ambient occlusion on the bottom, and light on top.
+        // Hills have dark ambient occlusion on the bottom, and light on top.
         sides.ApplyAmbientOcclusionTerm(1.0f, 0.0f);
 
         // Time to return to the oceans.
@@ -153,6 +157,28 @@ public class Planet : MonoBehaviour
             Destroy(m_GroundMesh);
 
         m_GroundMesh = GenerateMesh("Ground Mesh", m_GroundMaterial);
+
+        // Spawn in the trees.
+
+        Mesh groundMesh = m_GroundMesh.GetComponent<MeshFilter>().mesh;
+
+        for (int i = 0; i < groundMesh.vertices.Length; ++i)
+        {
+            if (Random.value < m_TreeSpawnRate)
+            {
+                float randA = Random.value;
+                float randB = Random.value;
+                float randC = Random.value;
+
+                Vector3 pointA = groundMesh.vertices[groundMesh.triangles[i + 0]];
+                Vector3 pointB = groundMesh.vertices[groundMesh.triangles[i + 1]];
+                Vector3 pointC = groundMesh.vertices[groundMesh.triangles[i + 2]];
+
+                Vector3 randPoint = (randA * pointA + randB * pointB + randC * pointC) / (randA + randB + randC);
+
+                GameObject tree = Instantiate(m_Tree, randPoint, Quaternion.FromToRotation(Vector3.up, randPoint.normalized));
+            }
+        }
     }
 
     public void InitAsIcosohedron()

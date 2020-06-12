@@ -393,3 +393,5 @@ MonoBehaviour:
   m_NumberOfHills: 2
   m_HillSizeMax: 0.5
   m_HillSizeMin: 0.1
+  m_Tree: {fileID: 7877282164576244008, guid: 00d82e02775f98048ba553aabadeaba0, type: 3}
+  m_TreeSpawnRate: 0.01
