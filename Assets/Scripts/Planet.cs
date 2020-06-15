@@ -161,6 +161,7 @@ public class Planet : MonoBehaviour
         // Spawn in the trees.
 
         Mesh groundMesh = m_GroundMesh.GetComponent<MeshFilter>().mesh;
+        Mesh oceanMesh = m_OceanMesh.GetComponent<MeshFilter>().mesh;
 
         for (int i = 0; i < groundMesh.vertices.Length; ++i)
         {
@@ -177,6 +178,14 @@ public class Planet : MonoBehaviour
                 Vector3 randPoint = (randA * pointA + randB * pointB + randC * pointC) / (randA + randB + randC);
 
                 GameObject tree = Instantiate(m_Tree, randPoint, Quaternion.FromToRotation(Vector3.up, randPoint.normalized));
+
+                // Translate the tree so that it is not sticking into the ground.
+                tree.transform.Translate(new Vector3(0, 0.2f, 0), Space.Self);
+
+                if (oceanMesh.bounds.Intersects(tree.GetComponentInChildren<MeshFilter>().mesh.bounds))
+                {
+                    // Destroy(tree);
+                }
             }
         }
     }

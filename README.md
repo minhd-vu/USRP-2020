@@ -44,3 +44,7 @@ I hope to combine the work of Lague and Winslow to expand the low-poly planet to
 * Added stars/space themed skybox.
 * Adjusted the camera controller to zoom in and out based on fov rather than distance; smooth-damp instead of lerp.
 * Fixed a bug that didn't properly render the shaders.
+
+### Week 2 - 
+
+* [Here](https://youtu.be/r_It_X7v-1E)
