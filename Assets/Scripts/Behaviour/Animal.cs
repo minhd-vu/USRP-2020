@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Animal : LivingEntity
 {
-
     public const int maxViewDistance = 10;
 
     [EnumFlags]
@@ -237,10 +236,16 @@ public class Animal : LivingEntity
             if (foodTarget && hunger > 0)
             {
                 float eatAmount = Mathf.Min(hunger, Time.deltaTime * 1 / eatDuration);
+
                 if (foodTarget is Plant)
                 {
                     eatAmount = ((Plant)foodTarget).Consume(eatAmount);
                 }
+                else if (foodTarget is Animal)
+                {
+                    ((Animal)foodTarget).Die(CauseOfDeath.Eaten);
+                }
+
                 hunger -= eatAmount;
             }
         }
