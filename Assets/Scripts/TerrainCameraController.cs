@@ -15,12 +15,17 @@ public class TerrainCameraController : MonoBehaviour
     private float m_VelocityOrthographicSize;
     private Camera cam;
 
+    private Vector3 m_OrthographicPosition;
+    private Vector3 m_PerspectivePosition;
+
     private bool isPaused = false;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = GetComponent<Camera>();
+        m_OrthographicPosition = new Vector3(0, 100, -100);
+        m_PerspectivePosition = new Vector3(0, 5, 0);
         m_TargetOrthographicSize = cam.orthographicSize;
     }
 
@@ -38,26 +43,50 @@ public class TerrainCameraController : MonoBehaviour
     {
         if (!isPaused)
         {
-            Vector3 position = transform.position;
-
-            if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - m_CameraMotionBorder)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                position.z += m_CameraSpeed * Time.deltaTime * cam.orthographicSize;
+                cam.orthographic = !cam.orthographic;
             }
 
-            if (Input.GetKey("a") || Input.mousePosition.x <= m_CameraMotionBorder)
+            Vector3 position = cam.orthographic ? m_OrthographicPosition : m_PerspectivePosition;
+
+            if (Input.GetKey(KeyCode.W))
             {
-                position.x -= m_CameraSpeed * Time.deltaTime * cam.orthographicSize;
+                position.z += Time.deltaTime * (cam.orthographic ? cam.orthographicSize : m_CameraSpeed);
             }
 
-            if (Input.GetKey("s") || Input.mousePosition.y <= m_CameraMotionBorder)
+            if (Input.GetKey(KeyCode.A))
             {
-                position.z -= m_CameraSpeed * Time.deltaTime * cam.orthographicSize;
+                position.x -=Time.deltaTime * (cam.orthographic ? cam.orthographicSize : m_CameraSpeed);
             }
 
-            if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - m_CameraMotionBorder)
+            if (Input.GetKey(KeyCode.S))
             {
-                position.x += m_CameraSpeed * Time.deltaTime * cam.orthographicSize;
+                position.z -= Time.deltaTime * (cam.orthographic ? cam.orthographicSize : m_CameraSpeed);
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                position.x += Time.deltaTime * (cam.orthographic ? cam.orthographicSize : m_CameraSpeed);
+            }
+
+            if (!cam.orthographic)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    position.y += m_CameraSpeed * Time.deltaTime;
+                }
+
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    position.y -= m_CameraSpeed * Time.deltaTime;
+                }
+
+                m_PerspectivePosition = position;
+            }
+            else
+            {
+                m_OrthographicPosition = position;
             }
 
             transform.position = position;

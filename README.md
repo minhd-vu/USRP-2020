@@ -47,4 +47,7 @@ I hope to combine the work of Lague and Winslow to expand the low-poly planet to
 
 ### Week 2 - 
 
-* [Here](https://youtu.be/r_It_X7v-1E)
+* [Here](https://youtu.be/r_It_X7v-1E) is another video by Sebastian Lague that details a environment with three species: foxes, rabbits, and plants.
+
+This week, I am extending Lague's work and trying to iron out all the bugs in the existing code base. This is slightly off track with the planets; but I might restructure the project so that the focus of it is on the ecosystem.
+Looking back on it, the planet's size is a little small and for an accurate simulation; the scale just isn't correct.
