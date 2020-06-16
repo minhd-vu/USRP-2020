@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-namespace TerrainGeneration {
+namespace TerrainGeneration
+{
     [System.Serializable]
-    public class NoiseSettings {
+    public class NoiseSettings
+    {
         public int seed;
-        [Range (1, 8)]
+        [Range(1, 8)]
         public int numLayers = 4;
         public float persistence = 0.5f;
         public float lacunarity = 2;
