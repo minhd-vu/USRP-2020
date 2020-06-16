@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Environment : MonoBehaviour
 {
-
     const int mapRegionSize = 10;
-
     public int seed;
 
     [Header("Trees")]
@@ -47,19 +45,11 @@ public class Environment : MonoBehaviour
 
         Init();
         SpawnInitialPopulations();
-
     }
 
-    void OnDrawGizmos()
+    private void Update()
     {
-        /* 
-        if (showMapDebug) {
-            if (preyMap != null && mapCoordTransform != null) {
-                Coord coord = new Coord ((int) mapCoordTransform.position.x, (int) mapCoordTransform.position.z);
-                preyMap.DrawDebugGizmos (coord, mapViewDst);
-            }
-        }
-        */
+        LogSpeciesPopulationCounts();
     }
 
     public static void RegisterMove(LivingEntity entity, Coord from, Coord to)
@@ -427,6 +417,16 @@ public class Environment : MonoBehaviour
                 speciesMaps[entity.species].Add(entity, coord);
             }
         }
+    }
+
+    void LogSpeciesPopulationCounts()
+    {
+        string s = "";
+        foreach (Species species in (Species[])Species.GetValues(typeof(Species)))
+        {
+            s += species + ": " + speciesMaps[species].numEntities + "\t";
+        }
+        print(s);
     }
 
     void LogPredatorPreyRelationships()

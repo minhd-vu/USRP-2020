@@ -160,7 +160,7 @@ public class Animal : LivingEntity
         List<Animal> potentialMates = Environment.SensePotentialMates(coord, this);
         foreach (Animal mate in potentialMates)
         {
-            if (mate.colourMaterialIndex)
+            break;
         }
     }
 

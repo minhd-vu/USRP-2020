@@ -162,7 +162,7 @@ MonoBehaviour:
     count: 500
   - prefab: {fileID: 8985062361614467402, guid: 0e0ac3719c48b4615860159e795eb1ca,
       type: 3}
-    count: 0
+    count: 12
   showMapDebug: 0
   mapCoordTransform: {fileID: 0}
   mapViewDst: 5
