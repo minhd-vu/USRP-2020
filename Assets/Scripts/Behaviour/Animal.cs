@@ -155,6 +155,15 @@ public class Animal : LivingEntity
         }
     }
 
+    protected virtual void FindPotentialMates()
+    {
+        List<Animal> potentialMates = Environment.SensePotentialMates(coord, this);
+        foreach (Animal mate in potentialMates)
+        {
+            if (mate.colourMaterialIndex)
+        }
+    }
+
     // When choosing from multiple food sources, the one with the lowest penalty will be selected
     protected virtual int FoodPreferencePenalty(LivingEntity self, LivingEntity food)
     {
