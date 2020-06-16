@@ -51,3 +51,6 @@ I hope to combine the work of Lague and Winslow to expand the low-poly planet to
 
 This week, I am extending Lague's work and trying to iron out all the bugs in the existing code base. This is slightly off track with the planets; but I might restructure the project so that the focus of it is on the ecosystem.
 Looking back on it, the planet's size is a little small and for an accurate simulation; the scale just isn't correct.
+* Added two different cameras to view the simulation.
+* Fixed perspective rendering bug with the terrain material.
+* Fixed fox eating bug not killing the rabbit.
