@@ -136,7 +136,6 @@ public class Animal : LivingEntity
             FindWater();
         }
         Act();
-
     }
 
     protected virtual void FindFood()
@@ -177,15 +176,8 @@ public class Animal : LivingEntity
         if (potentialMates.Count > 0)
         {
             currentAction = CreatureAction.SearchingForMate;
-            foreach (Animal mate in potentialMates)
-            {
-                if (mate.currentAction.Equals(CreatureAction.SearchingForMate))
-                {
-                    mateTarget = mate;
-                    CreatePath(mateTarget.coord);
-                    break;
-                }
-            }
+            mateTarget = potentialMates[Random.Range(0, potentialMates.Count - 1)];
+            CreatePath(mateTarget.coord);
         }
         else
         {
