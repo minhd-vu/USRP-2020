@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 public class Animal : LivingEntity
@@ -36,16 +39,6 @@ public class Animal : LivingEntity
     public float stamina;
     public float desire;
 
-    public float[] states = new float[sizeof(AnimalStates)];
-
-    private enum AnimalStates
-    {
-        Hunger,
-        Thirst,
-        Exhaustion,
-        ReproductiveUrge
-    }
-
     // Used for targeting movement
     protected LivingEntity foodTarget;
     protected Coord waterTarget;
@@ -82,10 +75,10 @@ public class Animal : LivingEntity
     protected virtual void Update()
     {
         // Increase stats over time; these influence what the animals does.
-        hunger += Time.deltaTime * 1 / timeToDeathByHunger;
-        thirst += Time.deltaTime * 1 / timeToDeathByThirst;
-        stamina += Time.deltaTime * 1 / staminaTimeFactor;
-        desire += Time.deltaTime * 1 / desireTimeFactor;
+        hunger += Time.deltaTime / timeToDeathByHunger;
+        thirst += Time.deltaTime / timeToDeathByThirst;
+        stamina += Time.deltaTime / staminaTimeFactor;
+        desire += Time.deltaTime / desireTimeFactor;
 
         // Animate movement. After moving a single tile, the animal will be able to choose its next action.
         if (animatingMovement)
@@ -127,15 +120,22 @@ public class Animal : LivingEntity
         bool currentlyDrinking = currentAction == CreatureAction.Drinking && waterTarget != null && thirst > 0;
         bool currentlyResting = currentAction == CreatureAction.Resting && stamina > 0;
 
-        if (!currentlyResting)
+        float[] states = { hunger, thirst, stamina, desire };
+        float max = states.Max();
 
-
-
-        if (hunger >= thirst || currentlyEating && thirst < criticalPercent)
+        if (max == desire)
+        {
+            FindPotentialMates();
+        }
+        else if (max == stamina)
+        {
+            currentAction = CreatureAction.Resting;
+        }
+        else if (max == hunger)
         {
             FindFood();
         }
-        else
+        else if (max == thirst)
         {
             FindWater();
         }
@@ -181,7 +181,7 @@ public class Animal : LivingEntity
         if (potentialMates.Count > 0)
         {
             currentAction = CreatureAction.SearchingForMate;
-            mateTarget = potentialMates[Random.Range(0, potentialMates.Count)];
+            mateTarget = potentialMates[UnityEngine.Random.Range(0, potentialMates.Count)];
             CreatePath(mateTarget.coord);
         }
         else
