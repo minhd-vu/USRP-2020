@@ -35,6 +35,7 @@ public class Animal : LivingEntity
 
     protected LivingEntity foodTarget;
     protected Coord waterTarget;
+    protected Animal mateTarget;
 
     // Move data:
     bool animatingMovement;
@@ -68,7 +69,6 @@ public class Animal : LivingEntity
 
     protected virtual void Update()
     {
-
         // Increase hunger and thirst over time
         hunger += Time.deltaTime * 1 / timeToDeathByHunger;
         thirst += Time.deltaTime * 1 / timeToDeathByThirst;
@@ -158,9 +158,15 @@ public class Animal : LivingEntity
     protected virtual void FindPotentialMates()
     {
         List<Animal> potentialMates = Environment.SensePotentialMates(coord, this);
-        foreach (Animal mate in potentialMates)
+        if(potentialMates.Count > 0)
         {
-            break;
+            currentAction = CreatureAction.SearchingForMate;
+            mateTarget = potentialMates[Random.Range(0, potentialMates.Count - 1)];
+            CreatePath(mateTarget.coord);
+        }
+        else
+        {
+            currentAction = CreatureAction.Exploring;
         }
     }
 
@@ -194,6 +200,18 @@ public class Animal : LivingEntity
                 {
                     LookAt(waterTarget);
                     currentAction = CreatureAction.Drinking;
+                }
+                else
+                {
+                    StartMoveToCoord(path[pathIndex]);
+                    pathIndex++;
+                }
+                break;
+            case CreatureAction.SearchingForMate:
+                if (Coord.AreNeighbours(coord, mateTarget.coord))
+                {
+                    LookAt(mateTarget.coord);
+                    currentAction = CreatureAction.Mating;
                 }
                 else
                 {
@@ -265,6 +283,10 @@ public class Animal : LivingEntity
                 thirst -= Time.deltaTime * 1 / drinkDuration;
                 thirst = Mathf.Clamp01(thirst);
             }
+        }
+        else if (currentAction == CreatureAction.Mating)
+        {
+
         }
     }
 
