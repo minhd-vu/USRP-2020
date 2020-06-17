@@ -54,6 +54,7 @@ MonoBehaviour:
   mapCoord:
     x: 0
     y: 0
+  prefab: {fileID: 3874918950189636065}
   diet: 2
   currentAction: 0
   maleColour: {r: 0.3584906, g: 0.2330951, b: 0.13020648, a: 0}

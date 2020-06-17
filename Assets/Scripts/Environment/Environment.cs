@@ -49,7 +49,7 @@ public class Environment : MonoBehaviour
 
     private void Update()
     {
-        LogSpeciesPopulationCounts();
+        // LogSpeciesPopulationCounts();
     }
 
     public static void RegisterMove(LivingEntity entity, Coord from, Coord to)
@@ -117,10 +117,7 @@ public class Environment : MonoBehaviour
             var visibleAnimal = (Animal)visibleEntities[i];
             if (visibleAnimal != self && visibleAnimal.genes.isMale != self.genes.isMale)
             {
-                if (visibleAnimal.currentAction == CreatureAction.SearchingForMate)
-                {
-                    potentialMates.Add(visibleAnimal);
-                }
+                potentialMates.Add(visibleAnimal);
             }
         }
 
@@ -229,7 +226,6 @@ public class Environment : MonoBehaviour
         // Store predator/prey relationships for all species
         for (int i = 0; i < initialPopulations.Length; i++)
         {
-
             if (initialPopulations[i].prefab is Animal)
             {
                 Animal hunter = (Animal)initialPopulations[i].prefab;
@@ -249,7 +245,7 @@ public class Environment : MonoBehaviour
             }
         }
 
-        //LogPredatorPreyRelationships ();
+        // LogPredatorPreyRelationships();
 
         SpawnTrees();
 
@@ -394,7 +390,6 @@ public class Environment : MonoBehaviour
 
     void SpawnInitialPopulations()
     {
-
         var spawnPrng = new System.Random(seed);
         var spawnCoords = new List<Coord>(walkableCoords);
 
@@ -407,6 +402,7 @@ public class Environment : MonoBehaviour
                     Debug.Log("Ran out of empty tiles to spawn initial population");
                     break;
                 }
+
                 int spawnCoordIndex = spawnPrng.Next(0, spawnCoords.Count);
                 Coord coord = spawnCoords[spawnCoordIndex];
                 spawnCoords.RemoveAt(spawnCoordIndex);

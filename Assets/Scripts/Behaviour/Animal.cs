@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Animal : LivingEntity
 {
+    public Animal prefab;
+
     public const int maxViewDistance = 10;
 
     [EnumFlags]
@@ -23,7 +25,7 @@ public class Animal : LivingEntity
     float hungerTimeFactor = 300;
     float thirstTimeFactor = 200;
     float staminaTimeFactor = 150;
-    float desireTimeFactor = 400;
+    float desireTimeFactor = 500;
 
     float drinkDuration = 6;
     float eatDuration = 10;
@@ -65,6 +67,13 @@ public class Animal : LivingEntity
         base.Init(coord);
         moveFromCoord = coord;
         genes = Genes.RandomGenes(1);
+
+        currentAction = CreatureAction.Exploring;
+
+        hunger = 0;
+        thirst = 0;
+        stamina = 0;
+        desire = 0;
 
         material.color = (genes.isMale) ? maleColour : femaleColour;
 
@@ -308,10 +317,11 @@ public class Animal : LivingEntity
                 }
                 break;
             case CreatureAction.Mating:
-                if (mateTarget && desire > 0)
+                if (mateTarget && desire > 0 && mateTarget.desire > 0)
                 {
+                    mateTarget.desire = 0;
                     desire = 0;
-                    Animal entity = Instantiate(this);
+                    Animal entity = Instantiate(prefab);
                     entity.Init(coord);
                     Environment.speciesMaps[entity.species].Add(entity, coord);
                 }
