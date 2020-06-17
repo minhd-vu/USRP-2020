@@ -19,16 +19,15 @@ public class Animal : LivingEntity
     // Settings
     float timeBetweenActionChoices = 1;
     float moveSpeed = 1.5f;
-    float timeToDeathByHunger = 200;
-    float timeToDeathByThirst = 200;
+
+    float hungerTimeFactor = 300;
+    float thirstTimeFactor = 200;
     float staminaTimeFactor = 150;
     float desireTimeFactor = 400;
 
     float drinkDuration = 6;
     float eatDuration = 10;
     float restDuration = 14;
-
-    float criticalPercent = 0.5f;
 
     // Visual settings
     float moveArcHeight = .2f;
@@ -75,8 +74,8 @@ public class Animal : LivingEntity
     protected virtual void Update()
     {
         // Increase stats over time; these influence what the animals does.
-        hunger += Time.deltaTime / timeToDeathByHunger;
-        thirst += Time.deltaTime / timeToDeathByThirst;
+        hunger += Time.deltaTime / hungerTimeFactor;
+        thirst += Time.deltaTime / thirstTimeFactor;
         stamina += Time.deltaTime / staminaTimeFactor;
         desire += Time.deltaTime / desireTimeFactor;
 
@@ -89,8 +88,8 @@ public class Animal : LivingEntity
         {
             // Handle interactions with external things, like food, water, mates.
             HandleInteractions();
-            float timeSinceLastActionChoice = Time.time - lastActionChooseTime;
-            if (timeSinceLastActionChoice > timeBetweenActionChoices)
+
+            if (Time.time - lastActionChooseTime > timeBetweenActionChoices)
             {
                 ChooseNextAction();
             }
@@ -115,10 +114,6 @@ public class Animal : LivingEntity
     protected virtual void ChooseNextAction()
     {
         lastActionChooseTime = Time.time;
-
-        bool currentlyEating = currentAction == CreatureAction.Eating && foodTarget && hunger > 0;
-        bool currentlyDrinking = currentAction == CreatureAction.Drinking && waterTarget != null && thirst > 0;
-        bool currentlyResting = currentAction == CreatureAction.Resting && stamina > 0;
 
         float[] states = { hunger, thirst, stamina, desire };
         float max = states.Max();
@@ -244,7 +239,7 @@ public class Animal : LivingEntity
 
     protected void CreatePath(Coord target)
     {
-        // Create new path if current is not already going to target
+        // Create new path if current is not already going to target.
         if (path == null || pathIndex >= path.Length || (path[path.Length - 1] != target || path[pathIndex - 1] != moveTargetCoord))
         {
             path = EnvironmentUtility.GetPath(coord.x, coord.y, target.x, target.y);
@@ -283,7 +278,7 @@ public class Animal : LivingEntity
             case CreatureAction.Eating:
                 if (foodTarget && hunger > 0)
                 {
-                    float eatAmount = Mathf.Min(hunger, Time.deltaTime * 1 / eatDuration);
+                    float eatAmount = Mathf.Min(hunger, Time.deltaTime / eatDuration);
 
                     if (foodTarget is Plant)
                     {
@@ -291,6 +286,7 @@ public class Animal : LivingEntity
                     }
                     else if (foodTarget is Animal)
                     {
+                        eatAmount = hunger;
                         ((Animal)foodTarget).Die(CauseOfDeath.Eaten);
                     }
 
@@ -300,14 +296,14 @@ public class Animal : LivingEntity
             case CreatureAction.Drinking:
                 if (thirst > 0)
                 {
-                    thirst -= Time.deltaTime * 1 / drinkDuration;
+                    thirst -= Time.deltaTime / drinkDuration;
                     thirst = Mathf.Clamp01(thirst);
                 }
                 break;
             case CreatureAction.Resting:
                 if (stamina > 0)
                 {
-                    stamina -= Time.deltaTime * 1 / restDuration;
+                    stamina -= Time.deltaTime / restDuration;
                     stamina = Mathf.Clamp01(stamina);
                 }
                 break;
@@ -315,7 +311,7 @@ public class Animal : LivingEntity
                 if (mateTarget && desire > 0)
                 {
                     desire = 0;
-                    var entity = Instantiate(this);
+                    Animal entity = Instantiate(this);
                     entity.Init(coord);
                     Environment.speciesMaps[entity.species].Add(entity, coord);
                 }
