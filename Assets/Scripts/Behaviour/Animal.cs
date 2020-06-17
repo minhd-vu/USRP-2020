@@ -38,7 +38,7 @@ public class Animal : LivingEntity
     protected Animal mateTarget;
 
     // Move data:
-    bool animatingMovement;
+    bool animatingMovement = true;
     Coord moveFromCoord;
     Coord moveTargetCoord;
     Vector3 moveStartPos;
@@ -64,8 +64,6 @@ public class Animal : LivingEntity
 
         ChooseNextAction();
     }
-
-
 
     protected virtual void Update()
     {
