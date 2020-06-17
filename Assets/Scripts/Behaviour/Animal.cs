@@ -19,9 +19,12 @@ public class Animal : LivingEntity
     float moveSpeed = 1.5f;
     float timeToDeathByHunger = 200;
     float timeToDeathByThirst = 200;
+    float staminaTimeFactor = 150;
+    float desireTimeFactor = 400;
 
     float drinkDuration = 6;
     float eatDuration = 10;
+    float restDuration = 8;
 
     float criticalPercent = 0.7f;
 
@@ -32,6 +35,8 @@ public class Animal : LivingEntity
     [Header("State")]
     public float hunger;
     public float thirst;
+    public float stamina;
+    public float desire;
 
     protected LivingEntity foodTarget;
     protected Coord waterTarget;
@@ -70,6 +75,8 @@ public class Animal : LivingEntity
         // Increase hunger and thirst over time
         hunger += Time.deltaTime * 1 / timeToDeathByHunger;
         thirst += Time.deltaTime * 1 / timeToDeathByThirst;
+        stamina += Time.deltaTime * 1 / staminaTimeFactor;
+        desire += Time.deltaTime * 1 / desireTimeFactor;
 
         // Animate movement. After moving a single tile, the animal will be able to choose its next action
         if (animatingMovement)
@@ -95,6 +102,10 @@ public class Animal : LivingEntity
         {
             Die(CauseOfDeath.Thirst);
         }
+        else if (stamina >= 1)
+        {
+            Die(CauseOfDeath.Age);
+        }
     }
 
     // Animals choose their next action after each movement step (1 tile),
@@ -107,7 +118,15 @@ public class Animal : LivingEntity
         // Decide next action:
         // Eat if (more hungry than thirsty) or (currently eating and not critically thirsty)
         bool currentlyEating = currentAction == CreatureAction.Eating && foodTarget && hunger > 0;
-        if (hunger >= thirst || currentlyEating && thirst < criticalPercent)
+        if (desire > stamina && desire > hunger && desire > thirst)
+        {
+            FindPotentialMates();
+        }
+        else if (stamina > hunger && stamina > thirst)
+        {
+            currentAction = CreatureAction.Resting;
+        }
+        else if (hunger >= thirst || currentlyEating && thirst < criticalPercent)
         {
             FindFood();
         }
@@ -116,7 +135,6 @@ public class Animal : LivingEntity
         {
             FindWater();
         }
-
         Act();
 
     }
@@ -156,11 +174,18 @@ public class Animal : LivingEntity
     protected virtual void FindPotentialMates()
     {
         List<Animal> potentialMates = Environment.SensePotentialMates(coord, this);
-        if(potentialMates.Count > 0)
+        if (potentialMates.Count > 0)
         {
             currentAction = CreatureAction.SearchingForMate;
-            mateTarget = potentialMates[Random.Range(0, potentialMates.Count - 1)];
-            CreatePath(mateTarget.coord);
+            foreach (Animal mate in potentialMates)
+            {
+                if (mate.currentAction.Equals(CreatureAction.SearchingForMate))
+                {
+                    mateTarget = mate;
+                    CreatePath(mateTarget.coord);
+                    break;
+                }
+            }
         }
         else
         {
@@ -282,9 +307,23 @@ public class Animal : LivingEntity
                 thirst = Mathf.Clamp01(thirst);
             }
         }
+        else if (currentAction == CreatureAction.Resting)
+        {
+            if (stamina > 0)
+            {
+                stamina -= Time.deltaTime * 1 / restDuration;
+                stamina = Mathf.Clamp01(stamina);
+            }
+        }
         else if (currentAction == CreatureAction.Mating)
         {
-
+            if (mateTarget && desire > 0)
+            {
+                desire = 0;
+                var entity = Instantiate(this);
+                entity.Init(coord);
+                Environment.speciesMaps[entity.species].Add(entity, coord);
+            }
         }
     }
 

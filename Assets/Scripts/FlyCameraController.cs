@@ -79,7 +79,7 @@ public class FlyCameraController : MonoBehaviour
     {
         Vector3 p_Velocity = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 
-        // Strifing enabled only in Fly Mode.
+        // Strifing
         if (Input.GetKey(KeyCode.Q))
         {
             p_Velocity += new Vector3(0.0f, -1.0f, 0.0f);
