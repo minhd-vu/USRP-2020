@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Animal : LivingEntity
@@ -14,7 +13,7 @@ public class Animal : LivingEntity
     public Color maleColour;
     public Color femaleColour;
 
-    // Settings:
+    // Settings
     float timeBetweenActionChoices = 1;
     float moveSpeed = 1.5f;
     float timeToDeathByHunger = 200;
@@ -24,26 +23,36 @@ public class Animal : LivingEntity
 
     float drinkDuration = 6;
     float eatDuration = 10;
-    float restDuration = 8;
+    float restDuration = 14;
 
-    float criticalPercent = 0.7f;
+    float criticalPercent = 0.5f;
 
-    // Visual settings:
+    // Visual settings
     float moveArcHeight = .2f;
 
-    // State:
     [Header("State")]
     public float hunger;
     public float thirst;
     public float stamina;
     public float desire;
 
+    public float[] states = new float[sizeof(AnimalStates)];
+
+    private enum AnimalStates
+    {
+        Hunger,
+        Thirst,
+        Exhaustion,
+        ReproductiveUrge
+    }
+
+    // Used for targeting movement
     protected LivingEntity foodTarget;
     protected Coord waterTarget;
     protected Animal mateTarget;
 
-    // Move data:
-    bool animatingMovement = true;
+    // Movement data
+    bool animatingMovement;
     Coord moveFromCoord;
     Coord moveTargetCoord;
     Vector3 moveStartPos;
@@ -72,20 +81,20 @@ public class Animal : LivingEntity
 
     protected virtual void Update()
     {
-        // Increase hunger and thirst over time
+        // Increase stats over time; these influence what the animals does.
         hunger += Time.deltaTime * 1 / timeToDeathByHunger;
         thirst += Time.deltaTime * 1 / timeToDeathByThirst;
         stamina += Time.deltaTime * 1 / staminaTimeFactor;
         desire += Time.deltaTime * 1 / desireTimeFactor;
 
-        // Animate movement. After moving a single tile, the animal will be able to choose its next action
+        // Animate movement. After moving a single tile, the animal will be able to choose its next action.
         if (animatingMovement)
         {
             AnimateMove();
         }
         else
         {
-            // Handle interactions with external things, like food, water, mates
+            // Handle interactions with external things, like food, water, mates.
             HandleInteractions();
             float timeSinceLastActionChoice = Time.time - lastActionChooseTime;
             if (timeSinceLastActionChoice > timeBetweenActionChoices)
@@ -109,32 +118,28 @@ public class Animal : LivingEntity
     }
 
     // Animals choose their next action after each movement step (1 tile),
-    // or, when not moving (e.g interacting with food etc), at a fixed time interval
+    // or, when not moving (e.g interacting with food etc), at a fixed time interval.
     protected virtual void ChooseNextAction()
     {
         lastActionChooseTime = Time.time;
-        // Get info about surroundings
 
-        // Decide next action:
-        // Eat if (more hungry than thirsty) or (currently eating and not critically thirsty)
         bool currentlyEating = currentAction == CreatureAction.Eating && foodTarget && hunger > 0;
-        if (desire > stamina && desire > hunger && desire > thirst)
-        {
-            FindPotentialMates();
-        }
-        else if (stamina > hunger && stamina > thirst)
-        {
-            currentAction = CreatureAction.Resting;
-        }
-        else if (hunger >= thirst || currentlyEating && thirst < criticalPercent)
+        bool currentlyDrinking = currentAction == CreatureAction.Drinking && waterTarget != null && thirst > 0;
+        bool currentlyResting = currentAction == CreatureAction.Resting && stamina > 0;
+
+        if (!currentlyResting)
+
+
+
+        if (hunger >= thirst || currentlyEating && thirst < criticalPercent)
         {
             FindFood();
         }
-        // More thirsty than hungry
         else
         {
             FindWater();
         }
+
         Act();
     }
 
@@ -176,7 +181,7 @@ public class Animal : LivingEntity
         if (potentialMates.Count > 0)
         {
             currentAction = CreatureAction.SearchingForMate;
-            mateTarget = potentialMates[Random.Range(0, potentialMates.Count - 1)];
+            mateTarget = potentialMates[Random.Range(0, potentialMates.Count)];
             CreatePath(mateTarget.coord);
         }
         else
@@ -185,7 +190,7 @@ public class Animal : LivingEntity
         }
     }
 
-    // When choosing from multiple food sources, the one with the lowest penalty will be selected
+    // When choosing from multiple food sources, the one with the lowest penalty will be selected.
     protected virtual int FoodPreferencePenalty(LivingEntity self, LivingEntity food)
     {
         return Coord.SqrDistance(self.coord, food.coord);
@@ -273,60 +278,59 @@ public class Animal : LivingEntity
 
     void HandleInteractions()
     {
-        if (currentAction == CreatureAction.Eating)
+        switch (currentAction)
         {
-            if (foodTarget && hunger > 0)
-            {
-                float eatAmount = Mathf.Min(hunger, Time.deltaTime * 1 / eatDuration);
-
-                if (foodTarget is Plant)
+            case CreatureAction.Eating:
+                if (foodTarget && hunger > 0)
                 {
-                    eatAmount = ((Plant)foodTarget).Consume(eatAmount);
-                }
-                else if (foodTarget is Animal)
-                {
-                    ((Animal)foodTarget).Die(CauseOfDeath.Eaten);
-                }
+                    float eatAmount = Mathf.Min(hunger, Time.deltaTime * 1 / eatDuration);
 
-                hunger -= eatAmount;
-            }
-        }
-        else if (currentAction == CreatureAction.Drinking)
-        {
-            if (thirst > 0)
-            {
-                thirst -= Time.deltaTime * 1 / drinkDuration;
-                thirst = Mathf.Clamp01(thirst);
-            }
-        }
-        else if (currentAction == CreatureAction.Resting)
-        {
-            if (stamina > 0)
-            {
-                stamina -= Time.deltaTime * 1 / restDuration;
-                stamina = Mathf.Clamp01(stamina);
-            }
-        }
-        else if (currentAction == CreatureAction.Mating)
-        {
-            if (mateTarget && desire > 0)
-            {
-                desire = 0;
-                var entity = Instantiate(this);
-                entity.Init(coord);
-                Environment.speciesMaps[entity.species].Add(entity, coord);
-            }
+                    if (foodTarget is Plant)
+                    {
+                        eatAmount = ((Plant)foodTarget).Consume(eatAmount);
+                    }
+                    else if (foodTarget is Animal)
+                    {
+                        ((Animal)foodTarget).Die(CauseOfDeath.Eaten);
+                    }
+
+                    hunger -= eatAmount;
+                }
+                break;
+            case CreatureAction.Drinking:
+                if (thirst > 0)
+                {
+                    thirst -= Time.deltaTime * 1 / drinkDuration;
+                    thirst = Mathf.Clamp01(thirst);
+                }
+                break;
+            case CreatureAction.Resting:
+                if (stamina > 0)
+                {
+                    stamina -= Time.deltaTime * 1 / restDuration;
+                    stamina = Mathf.Clamp01(stamina);
+                }
+                break;
+            case CreatureAction.Mating:
+                if (mateTarget && desire > 0)
+                {
+                    desire = 0;
+                    var entity = Instantiate(this);
+                    entity.Init(coord);
+                    Environment.speciesMaps[entity.species].Add(entity, coord);
+                }
+                break;
         }
     }
 
     void AnimateMove()
     {
-        // Move in an arc from start to end tile
+        // Move in an arc from start to end tile.
         moveTime = Mathf.Min(1, moveTime + Time.deltaTime * moveSpeed * moveSpeedFactor);
         float height = (1 - 4 * (moveTime - .5f) * (moveTime - .5f)) * moveArcHeight * moveArcHeightFactor;
         transform.position = Vector3.Lerp(moveStartPos, moveTargetPos, moveTime) + Vector3.up * height;
 
-        // Finished moving
+        // Finished moving.
         if (moveTime >= 1)
         {
             Environment.RegisterMove(this, coord, moveTargetCoord);

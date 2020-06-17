@@ -60,6 +60,8 @@ MonoBehaviour:
   femaleColour: {r: 0.6509434, g: 0.45010933, b: 0.3224012, a: 0}
   hunger: 0
   thirst: 0
+  stamina: 0
+  desire: 0
 --- !u!1001 &322534139445717557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,7 +157,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: f892f7f7fafa34650a0281cc707ca6bf,
         type: 3}
       propertyPath: m_Name
-      value: Bunny 1
+      value: Bunny
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f892f7f7fafa34650a0281cc707ca6bf, type: 3}
