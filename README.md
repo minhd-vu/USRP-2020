@@ -54,3 +54,5 @@ Looking back on it, the planet's size is a little small and for an accurate simu
 * Added two different cameras to view the simulation.
 * Fixed perspective rendering bug with the terrain material.
 * Fixed fox eating bug not killing the rabbit.
+* Added reproduction.
+* Added death by old age and exhaustion.

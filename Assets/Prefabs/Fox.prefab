@@ -141,7 +141,13 @@ MonoBehaviour:
   currentAction: 0
   maleColour: {r: 0, g: 0, b: 0, a: 0}
   femaleColour: {r: 0, g: 0, b: 0, a: 0}
+  hungerTimeFactor: 300
+  thirstTimeFactor: 200
+  staminaTimeFactor: 150
+  desireTimeFactor: 500
+  lifespanTimeFactor: 600
   hunger: 0
   thirst: 0
   stamina: 0
   desire: 0
+  lifespan: 0

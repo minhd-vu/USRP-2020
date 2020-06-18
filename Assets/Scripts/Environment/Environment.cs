@@ -49,7 +49,7 @@ public class Environment : MonoBehaviour
 
     private void Update()
     {
-        // LogSpeciesPopulationCounts();
+        LogSpeciesPopulationCounts();
     }
 
     public static void RegisterMove(LivingEntity entity, Coord from, Coord to)

@@ -22,10 +22,11 @@ public class Animal : LivingEntity
     float timeBetweenActionChoices = 1;
     float moveSpeed = 1.5f;
 
-    float hungerTimeFactor = 300;
-    float thirstTimeFactor = 200;
-    float staminaTimeFactor = 150;
-    float desireTimeFactor = 500;
+    public float hungerTimeFactor = 300;
+    public float thirstTimeFactor = 200;
+    public float staminaTimeFactor = 150;
+    public float desireTimeFactor = 500;
+    public float lifespanTimeFactor = 600;
 
     float drinkDuration = 6;
     float eatDuration = 10;
@@ -39,6 +40,7 @@ public class Animal : LivingEntity
     public float thirst;
     public float stamina;
     public float desire;
+    public float lifespan;
 
     // Used for targeting movement
     protected LivingEntity foodTarget;
@@ -68,13 +70,6 @@ public class Animal : LivingEntity
         moveFromCoord = coord;
         genes = Genes.RandomGenes(1);
 
-        currentAction = CreatureAction.Exploring;
-
-        hunger = 0;
-        thirst = 0;
-        stamina = 0;
-        desire = 0;
-
         material.color = (genes.isMale) ? maleColour : femaleColour;
 
         ChooseNextAction();
@@ -87,6 +82,7 @@ public class Animal : LivingEntity
         thirst += Time.deltaTime / thirstTimeFactor;
         stamina += Time.deltaTime / staminaTimeFactor;
         desire += Time.deltaTime / desireTimeFactor;
+        lifespan += Time.deltaTime / lifespanTimeFactor;
 
         // Animate movement. After moving a single tile, the animal will be able to choose its next action.
         if (animatingMovement)
@@ -113,6 +109,10 @@ public class Animal : LivingEntity
             Die(CauseOfDeath.Thirst);
         }
         else if (stamina >= 1)
+        {
+            Die(CauseOfDeath.Exhaustion);
+        }
+        else if (lifespan >= 1)
         {
             Die(CauseOfDeath.Age);
         }
@@ -237,8 +237,11 @@ public class Animal : LivingEntity
                     LookAt(mateTarget.coord);
                     if (mateTarget && desire > 0 && mateTarget.desire > 0)
                     {
-                        mateTarget.desire = 0;
                         desire = 0;
+                        mateTarget.desire = 0;
+
+                        currentAction = CreatureAction.Mating;
+
                         Animal entity = Instantiate(prefab);
                         entity.Init(coord);
                         Environment.speciesMaps[entity.species].Add(entity, coord);

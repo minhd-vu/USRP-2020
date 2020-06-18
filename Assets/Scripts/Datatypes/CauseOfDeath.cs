@@ -2,5 +2,6 @@
     Hunger,
     Thirst,
     Age,
-    Eaten
+    Eaten,
+    Exhaustion
 }
