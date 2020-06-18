@@ -235,7 +235,14 @@ public class Animal : LivingEntity
                 if (Coord.AreNeighbours(coord, mateTarget.coord))
                 {
                     LookAt(mateTarget.coord);
-                    currentAction = CreatureAction.Mating;
+                    if (mateTarget && desire > 0 && mateTarget.desire > 0)
+                    {
+                        mateTarget.desire = 0;
+                        desire = 0;
+                        Animal entity = Instantiate(prefab);
+                        entity.Init(coord);
+                        Environment.speciesMaps[entity.species].Add(entity, coord);
+                    }
                 }
                 else
                 {
@@ -314,16 +321,6 @@ public class Animal : LivingEntity
                 {
                     stamina -= Time.deltaTime / restDuration;
                     stamina = Mathf.Clamp01(stamina);
-                }
-                break;
-            case CreatureAction.Mating:
-                if (mateTarget && desire > 0 && mateTarget.desire > 0)
-                {
-                    mateTarget.desire = 0;
-                    desire = 0;
-                    Animal entity = Instantiate(prefab);
-                    entity.Init(coord);
-                    Environment.speciesMaps[entity.species].Add(entity, coord);
                 }
                 break;
         }
