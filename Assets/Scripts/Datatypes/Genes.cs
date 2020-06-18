@@ -1,5 +1,7 @@
-﻿using static System.Math;
+﻿using System;
+using static System.Math;
 
+[Serializable]
 public class Genes
 {
     const float mutationChance = .2f;
@@ -7,8 +9,8 @@ public class Genes
 
     static readonly System.Random prng = new System.Random();
 
-    public readonly bool isMale;
-    public readonly float[] values;
+    public bool isMale;
+    public float[] values;
 
     public Genes(float[] values)
     {
@@ -29,9 +31,13 @@ public class Genes
     public static Genes InheritedGenes(Genes mother, Genes father)
     {
         float[] values = new float[mother.values.Length];
-        // TODO: implement inheritance
-        Genes genes = new Genes(values);
-        return genes;
+
+        for (int i = 0; i < values.Length; ++i)
+        {
+            values[i] = (mother.values[i] + father.values[i]) / 2.0f;
+        }
+
+        return new Genes(values);
     }
 
     static float RandomValue()

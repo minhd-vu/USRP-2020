@@ -14,6 +14,7 @@ public class Animal : LivingEntity
     public Species diet;
 
     public CreatureAction currentAction;
+    [SerializeField]
     public Genes genes;
     public Color maleColour;
     public Color femaleColour;
@@ -68,8 +69,8 @@ public class Animal : LivingEntity
     {
         base.Init(coord);
         moveFromCoord = coord;
-        genes = Genes.RandomGenes(1);
 
+        genes = Genes.RandomGenes(1);
         material.color = (genes.isMale) ? maleColour : femaleColour;
 
         ChooseNextAction();
@@ -242,6 +243,7 @@ public class Animal : LivingEntity
 
                         Animal entity = Instantiate(prefab);
                         entity.Init(coord);
+                        entity.genes = Genes.InheritedGenes(genes, mateTarget.genes);
                         Environment.speciesMaps[entity.species].Add(entity, coord);
                     }
                 }
