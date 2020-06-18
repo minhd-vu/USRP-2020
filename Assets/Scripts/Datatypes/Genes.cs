@@ -34,7 +34,7 @@ public class Genes
 
         for (int i = 0; i < values.Length; ++i)
         {
-            values[i] = (mother.values[i] + father.values[i]) / 2.0f;
+            values[i] = (mother.values[i] + father.values[i]) / 2.0f + RandomValue() < mutationChance ? maxMutationAmount * RandomValue() : 0;
         }
 
         return new Genes(values);
