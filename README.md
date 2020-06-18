@@ -56,3 +56,4 @@ Looking back on it, the planet's size is a little small and for an accurate simu
 * Fixed fox eating bug not killing the rabbit.
 * Added reproduction.
 * Added death by old age and exhaustion.
+* Varying animal movement speeds.

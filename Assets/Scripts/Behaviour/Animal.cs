@@ -20,7 +20,7 @@ public class Animal : LivingEntity
 
     // Settings
     float timeBetweenActionChoices = 1;
-    float moveSpeed = 1.5f;
+    public float moveSpeed = 1.0f;
 
     public float hungerTimeFactor = 300;
     public float thirstTimeFactor = 200;
@@ -239,8 +239,6 @@ public class Animal : LivingEntity
                     {
                         desire = 0;
                         mateTarget.desire = 0;
-
-                        currentAction = CreatureAction.Mating;
 
                         Animal entity = Instantiate(prefab);
                         entity.Init(coord);
