@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Plant : LivingEntity
@@ -22,8 +23,14 @@ public class Plant : LivingEntity
         if (Time.time - timer > reproduction)
         {
             Coord c = Environment.GetNextTileRandom(coord);
-            // maybe use getentities in map for determination
-            Environment.SpawnPlant(c, (Plant)prefab);
+            var entities = Environment.speciesMaps[Species.Plant].GetEntities(c, 1);
+            if (entities != null && entities.Count == 0)
+            {
+                var entity = Instantiate(prefab);
+                entity.Init(c);
+                Environment.speciesMaps[Species.Plant].Add(entity, c);
+            }
+
             timer = Time.time;
         }
     }
