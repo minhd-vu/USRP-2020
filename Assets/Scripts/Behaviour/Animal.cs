@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Animal : LivingEntity
 {
-    public Animal prefab;
-
     public const int maxViewDistance = 10;
 
     [EnumFlags]
@@ -241,7 +239,7 @@ public class Animal : LivingEntity
                         desire = 0;
                         mateTarget.desire = 0;
 
-                        Animal entity = Instantiate(prefab);
+                        Animal entity = (Animal)Instantiate(prefab);
                         entity.Init(coord);
                         entity.genes = Genes.InheritedGenes(genes, mateTarget.genes);
                         Environment.speciesMaps[entity.species].Add(entity, coord);

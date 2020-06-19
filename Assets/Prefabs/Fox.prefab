@@ -139,13 +139,16 @@ MonoBehaviour:
   prefab: {fileID: 8985062361614467402}
   diet: 4
   currentAction: 0
+  genes:
+    isMale: 0
+    values: []
   maleColour: {r: 0, g: 0, b: 0, a: 0}
   femaleColour: {r: 0, g: 0, b: 0, a: 0}
   moveSpeed: 1
   hungerTimeFactor: 300
   thirstTimeFactor: 200
   staminaTimeFactor: 150
-  desireTimeFactor: 500
+  desireTimeFactor: 550
   lifespanTimeFactor: 600
   hunger: 0
   thirst: 0

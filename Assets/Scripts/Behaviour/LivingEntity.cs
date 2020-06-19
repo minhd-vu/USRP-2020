@@ -2,6 +2,8 @@
 
 public class LivingEntity : MonoBehaviour
 {
+    public LivingEntity prefab;
+
     public int colourMaterialIndex;
     public Species species;
     public Material material;

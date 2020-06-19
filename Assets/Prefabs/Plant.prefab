@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3fa69f2b3ead4c90bd4ed7635a7df5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 491534157793795662}
   colourMaterialIndex: 0
   species: 2
   material: {fileID: 2100000, guid: 02a4e750351384d329bc471b9575ec7b, type: 2}

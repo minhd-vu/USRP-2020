@@ -39,9 +39,13 @@ public class Environment : MonoBehaviour
 
     public static Dictionary<Species, Map> speciesMaps;
 
+    private float lastSpawnTimer;
+    private float lastSpawnTime = 1;
+
     void Start()
     {
         prng = new System.Random();
+        lastSpawnTimer = Time.time;
 
         Init();
         SpawnInitialPopulations();
@@ -50,6 +54,17 @@ public class Environment : MonoBehaviour
     private void Update()
     {
         LogSpeciesPopulationCounts();
+
+        // Keep growing plants.
+        if (Time.time - lastSpawnTimer > lastSpawnTime)
+        {
+        }
+    }
+    public static void SpawnPlant(Coord coord, Plant prefab)
+    {
+        var entity = Instantiate(prefab);
+        entity.Init(coord);
+        speciesMaps[entity.species].Add(entity, coord);
     }
 
     public static void RegisterMove(LivingEntity entity, Coord from, Coord to)
