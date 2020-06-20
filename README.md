@@ -58,5 +58,6 @@ Looking back on it, the planet's size is a little small and for an accurate simu
 * Added death by old age and exhaustion.
 * Varying animal movement speeds.
 * Added plant reproduction.
+* Can no longer be run using WebGL due to memory issues, so I will create a week 2 release.
 
 ### Week 3 - 
