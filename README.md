@@ -48,7 +48,7 @@ I hope to combine the work of Lague and Winslow to expand the low-poly planet to
 
 Here is a picture of the progress at the end of week one:
 
-![Image of Week 1 Research Project](https://octodex.github.com/images/yaktocat.png)
+![Image of Week 1 Research Project](https://raw.githubusercontent.com/minhd-vu/USRP-2020/master/images/Week%201%20Planet.png)
 
 ### Week 2 - 
 
