@@ -44,6 +44,11 @@ I hope to combine the work of Lague and Winslow to expand the low-poly planet to
 * Added stars/space themed skybox.
 * Adjusted the camera controller to zoom in and out based on fov rather than distance; smooth-damp instead of lerp.
 * Fixed a bug that didn't properly render the shaders.
+* Added trees to the planet.
+
+Here is a picture of the progress at the end of week one:
+
+![Image of Week 1 Research Project](https://octodex.github.com/images/yaktocat.png)
 
 ### Week 2 - 
 
@@ -58,6 +63,5 @@ Looking back on it, the planet's size is a little small and for an accurate simu
 * Added death by old age and exhaustion.
 * Varying animal movement speeds.
 * Added plant reproduction.
-* Can no longer be run using WebGL due to memory issues, so I will create a week 2 release.
 
 ### Week 3 - 
