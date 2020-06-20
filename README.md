@@ -57,3 +57,6 @@ Looking back on it, the planet's size is a little small and for an accurate simu
 * Added reproduction.
 * Added death by old age and exhaustion.
 * Varying animal movement speeds.
+* Added plant reproduction.
+
+### Week 3 - 
