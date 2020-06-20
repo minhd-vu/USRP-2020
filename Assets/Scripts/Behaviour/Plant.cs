@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Plant : LivingEntity
 {
-    float amountRemaining = 1;
     const float consumeSpeed = 8;
 
     float reproduction;
@@ -14,8 +13,8 @@ public class Plant : LivingEntity
     public override void Init(Coord coord)
     {
         base.Init(coord);
-        reproduction = Random.Range(1, 400);
-        timer = Time.time;
+        reproduction = Random.Range(5, 20);
+        timer = Time.time + Random.Range(0, reproduction);
     }
 
     private void Update()
@@ -37,12 +36,12 @@ public class Plant : LivingEntity
 
     public float Consume(float amount)
     {
-        float amountConsumed = Mathf.Max(0, Mathf.Min(amountRemaining, amount));
-        amountRemaining -= amount * consumeSpeed;
+        float amountConsumed = Mathf.Max(0, Mathf.Min(AmountRemaining, amount));
+        AmountRemaining -= amount * consumeSpeed;
 
-        transform.localScale = Vector3.one * amountRemaining;
+        transform.localScale = Vector3.one * AmountRemaining;
 
-        if (amountRemaining <= 0)
+        if (AmountRemaining <= 0)
         {
             Die(CauseOfDeath.Eaten);
         }
@@ -50,11 +49,5 @@ public class Plant : LivingEntity
         return amountConsumed;
     }
 
-    public float AmountRemaining
-    {
-        get
-        {
-            return amountRemaining;
-        }
-    }
+    public float AmountRemaining { get; private set; } = 1;
 }
