@@ -51,7 +51,7 @@ During Week 2 I began implementing the systems for procedurally generated planet
 
 Here is a picture of the progress with procedurally generated planets:
 
-![Image of Week 1 Research Project](https://raw.githubusercontent.com/minhd-vu/USRP-2020/master/images/Week%201%20Planet.png)
+![Image of Procedural Planet Progress](https://raw.githubusercontent.com/minhd-vu/USRP-2020/master/images/Week%201%20Planet.png)
 
 At this point I felt like I had a good basis on having a procedurally generated planet, now I started my research early to find a way to incorporate an ecosystem.
 
@@ -70,5 +70,10 @@ Here are the most significant changes I made:
 * Added death by old age and exhaustion.
 * Varying animal movement speeds.
 * Added plant reproduction.
+
+Here is a snapshot of my progress so far:
+![Image of Ecosystem Progress](https://raw.githubusercontent.com/minhd-vu/USRP-2020/master/images/Week%202.png)
+
+You can also play the [release 0.6](https://github.com/minhd-vu/USRP-2020/releases/tag/0.6) to see it in action.
 
 ### Week 3 - 
