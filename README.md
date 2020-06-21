@@ -65,6 +65,7 @@ It uses a procedurally generated tiled map and a coordinate system in order to m
 Were I to try to combine the two; I would have to find a way to map a coordinate system to a sphere and that might prove challenging. I believe that making the ecosystem very depthful and extending the terrain procedural generation may be the best way to take this research project.
 
 Here are the most significant changes I made:
+* Made behaviour more "animal-like," animals no longer only ate and drank and did nothing else.
 * Added two different cameras to view the simulation.
 * Fixed perspective rendering bug with the terrain material.
 * Fixed fox eating bug not killing the rabbit.
