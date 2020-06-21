@@ -53,6 +53,8 @@ Here is a picture of the progress with procedurally generated planets:
 
 ![Image of Procedural Planet Progress](https://raw.githubusercontent.com/minhd-vu/USRP-2020/master/images/Week%201%20Planet.png)
 
+However, there is a limitation to Winslow's method. Further subdivisions of the planet consume large amounts of memory, to the point where 4 subdivisions would prevent the project from being run using WebGL.
+That means that finer levels of detail would be unachievable because the scale would be too small. I am considering this limitation in the future.
 At this point I felt like I had a good basis on having a procedurally generated planet, now I started my research early to find a way to incorporate an ecosystem.
 
 * [Here](https://youtu.be/r_It_X7v-1E) is another video by Sebastian Lague that details a environment with three species: foxes, rabbits, and plants.
@@ -72,6 +74,7 @@ Here are the most significant changes I made:
 * Added plant reproduction.
 
 Here is a snapshot of my progress so far:
+
 ![Image of Ecosystem Progress](https://raw.githubusercontent.com/minhd-vu/USRP-2020/master/images/Week%202.png)
 
 You can also play the [release 0.6](https://github.com/minhd-vu/USRP-2020/releases/tag/0.6) to see it in action.
