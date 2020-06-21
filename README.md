@@ -3,7 +3,7 @@ OSCAR USRP Summer 2020 - "Integrating Procedurally Generated Planets and Ecosyst
 
 **Demo the project [here](https://minhd-vu.github.io/USRP-2020/)**.
 
-You can find the entirety of the research proposal in the GitHub folder. It outlines my inspiration, process, timeline, and expected outcomes of this project.
+You can find the entirety of the [research proposal](https://github.com/minhd-vu/USRP-2020/blob/master/Research%20Proposal.pdf) in the GitHub folder. It outlines my inspiration, process, timeline, and expected outcomes of this project.
 
 ### Week 1 - Research and Planning: Procedurally Generated Planets
 During this week, I researched the possible resources that would aid in helping me create procedurally generated planets.
