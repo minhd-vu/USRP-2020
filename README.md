@@ -41,16 +41,19 @@ I plan on deploying to both web and desktop so by keeping that in mind, I knew t
 I have also watched and outlined the keypoints and concepts from the videos. I will review these during Week 2 when implementing the procedurally generated planets.
 I hope to combine the work of Lague and Winslow to expand the low-poly planet to have differnt biomes and assign different environmental values to each region.
 
+### Week 2 - Execution: Procedurally Generated Planets
+
+During Week 2 I began implementing the systems for procedurally generated planets. I mainly followed Peter Winslow's tutorial to achieve the look. I fixed some bugs because the tutorial was a little outdated, also meaning that I could use the desired render pipeline.
+* Added trees to the planet.
 * Added stars/space themed skybox.
 * Adjusted the camera controller to zoom in and out based on fov rather than distance; smooth-damp instead of lerp.
 * Fixed a bug that didn't properly render the shaders.
-* Added trees to the planet.
 
-Here is a picture of the progress at the end of week one:
+Here is a picture of the progress with procedurally generated planets:
 
 ![Image of Week 1 Research Project](https://raw.githubusercontent.com/minhd-vu/USRP-2020/master/images/Week%201%20Planet.png)
 
-### Week 2 - 
+At this point I felt like I had a good basis on having a procedurally generated planet, now I started my research early to find a way to incorporate an ecosystem.
 
 * [Here](https://youtu.be/r_It_X7v-1E) is another video by Sebastian Lague that details a environment with three species: foxes, rabbits, and plants.
 
