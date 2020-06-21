@@ -56,9 +56,11 @@ Here is a picture of the progress with procedurally generated planets:
 At this point I felt like I had a good basis on having a procedurally generated planet, now I started my research early to find a way to incorporate an ecosystem.
 
 * [Here](https://youtu.be/r_It_X7v-1E) is another video by Sebastian Lague that details a environment with three species: foxes, rabbits, and plants.
-  * Lague linked his codebase for the project, but it remains largely unfinished; even less finished than what the video shows. I downloaded it and I have been experimenting with the ecosystem.
-  It uses a procedurally generated tiled map and a coordinate system in order to map the entities. This is slightly off track with the planets; but I might restructure the project so that the focus of it is on the ecosystem; because that is the bulk of it.
-  Were I to try to combine the two; I would have to find a way to map a coordinate system to a sphere and that might prove challenging. I believe that making the ecosystem very depthful and extending the terrain procedural generation may be the best way to take this research project.
+
+#### Conclusion
+Lague linked his codebase for the project, but it remains largely unfinished; even less finished than what the video shows. I downloaded it and I have been experimenting with the ecosystem.
+It uses a procedurally generated tiled map and a coordinate system in order to map the entities. This is slightly off track with the planets; but I might restructure the project so that the focus of it is on the ecosystem; because that is the bulk of it.
+Were I to try to combine the two; I would have to find a way to map a coordinate system to a sphere and that might prove challenging. I believe that making the ecosystem very depthful and extending the terrain procedural generation may be the best way to take this research project.
 
 Here are the most significant changes I made:
 * Added two different cameras to view the simulation.
