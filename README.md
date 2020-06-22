@@ -81,3 +81,6 @@ Here is a snapshot of my progress so far:
 You can also play the [release 0.6](https://github.com/minhd-vu/USRP-2020/releases/tag/0.6) to see it in action.
 
 ### Week 3 - 
+
+I found a YouTube channel, [Primer](https://www.youtube.com/channel/UCKzJFdi57J53Vr_BkTfN3uQ/videos), that deals with the concepts behind simulating evolution and many other factors that go in to organism and life.
+Some of their resources are coded in python, so I may be able to have a better understanding and model similar situation in my research project.
