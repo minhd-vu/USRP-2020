@@ -88,3 +88,4 @@ Some of their resources are coded in python, so I may be able to have a better u
 * In primer's video on exponential growth; primer displayed how there was a similar trend in the current simulation I currently had.
 * In "Mutations and the First Replicators," Primer discusses the math concepts behind mutations. Although my simulation will not be modelling first replicators; it will share similar details for mutations.
 The uniqueness in Primer's simulation method is that the mutation occurs by chance and is asexual. My ecosystem will be more focused on sexual reproduction.
+  * In the video, "How life grows exponentially," we see that different values for reproduction and death and be modelled to determine whether a species thrives or goes extinct.
