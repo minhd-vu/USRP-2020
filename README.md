@@ -89,3 +89,4 @@ Some of their resources are coded in python, so I may be able to have a better u
 * In the video, "How life grows exponentially," we see that different values for reproduction and death and be modelled to determine whether a species thrives or goes extinct.
 * In "Mutations and the First Replicators," Primer discusses the math concepts behind mutations. Although my simulation will not be modelling first replicators; it will share similar details for mutations.
 The uniqueness in Primer's simulation method is that the mutation occurs by chance and is asexual. My ecosystem will be more focused on sexual reproduction.
+* In "Simulating Competition and Logistic Growth" we discuss the math behind carrying capacities. In my ecosystem, I hope to be able to view similar data when running the simulation.
