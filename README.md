@@ -90,3 +90,5 @@ Some of their resources are coded in python, so I may be able to have a better u
 * In "Mutations and the First Replicators," Primer discusses the math concepts behind mutations. Although my simulation will not be modelling first replicators; it will share similar details for mutations.
 The uniqueness in Primer's simulation method is that the mutation occurs by chance and is asexual. My ecosystem will be more focused on sexual reproduction.
 * In "Simulating Competition and Logistic Growth" we discuss the math behind carrying capacities. In my ecosystem, I hope to be able to view similar data when running the simulation.
+
+In week 4, I plan on implementing the majority of the genetics. I plan on having genes that control speed, hunger, vision range, etc. I hope to set up an architecture that will allow for new genes to be added seamlessly.
