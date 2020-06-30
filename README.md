@@ -92,3 +92,7 @@ The uniqueness in Primer's simulation method is that the mutation occurs by chan
 * In "Simulating Competition and Logistic Growth" we discuss the math behind carrying capacities. In my ecosystem, I hope to be able to view similar data when running the simulation.
 
 In week 4, I plan on implementing the majority of the genetics. I plan on having genes that control speed, hunger, vision range, etc. I hope to set up an architecture that will allow for new genes to be added seamlessly.
+
+### Week 4 - 
+In primer's video, "Simulating Natural Selection," they define a set of rules for the ecosystem.
+It's also interesting how Primer graphs their simulation data over time. I hope to do this with assets in Unity.
