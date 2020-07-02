@@ -69,6 +69,7 @@ public class Animal : LivingEntity
         moveFromCoord = coord;
 
         genes = Genes.RandomGenes(1);
+        moveSpeed = genes.values[0];
         material.color = (genes.isMale) ? maleColour : femaleColour;
 
         ChooseNextAction();
