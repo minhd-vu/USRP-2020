@@ -98,3 +98,4 @@ In primer's video, "Simulating Natural Selection," they define a set of rules fo
 It's also interesting how Primer graphs their simulation data over time. I hope to do this with assets in Unity. While we are trying to model population evolution in the ecosystem, the genetic makeup is simplified so that it's not necessarily realistic, but it can have insights in to the real world.
 Primer defines a "gene" as the unit of natural selection. Primer also covers different gene types, such as selfish genes of altruism. I might implement altruism but not inclusive fitness, but rather kin altruism which is more common in nature.
 Additionally, Primer also discusses "the Evolution of Aggression," which I might implement once both foxes and bunnies have been completed.
+* Added gene mutations for speed.
