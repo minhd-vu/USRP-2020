@@ -13,7 +13,7 @@ public class Plant : LivingEntity
     public override void Init(Coord coord)
     {
         base.Init(coord);
-        reproduction = Random.Range(5, 20);
+        reproduction = Random.Range(1, 200);
         timer = Time.time + Random.Range(0, reproduction);
     }
 
