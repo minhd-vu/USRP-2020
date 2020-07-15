@@ -99,3 +99,6 @@ It's also interesting how Primer graphs their simulation data over time. I hope 
 Primer defines a "gene" as the unit of natural selection. Primer also covers different gene types, such as selfish genes of altruism. I might implement altruism but not inclusive fitness, but rather kin altruism which is more common in nature.
 Additionally, Primer also discusses "the Evolution of Aggression," which I might implement once both foxes and bunnies have been completed.
 * Added gene mutations for speed.
+
+### Week 5 -
+

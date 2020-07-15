@@ -41,6 +41,16 @@ public class Animal : LivingEntity
     public float desire;
     public float lifespan;
 
+    private enum GeneNames
+    {
+        Speed = 0,
+        Hunger,
+        Thirst,
+        Stamina,
+        Desire,
+        Lifespan
+    }
+
     // Used for targeting movement
     protected LivingEntity foodTarget;
     protected Coord waterTarget;
@@ -68,8 +78,13 @@ public class Animal : LivingEntity
         base.Init(coord);
         moveFromCoord = coord;
 
-        genes = Genes.RandomGenes(1);
-        moveSpeed = genes.values[0];
+        genes = Genes.RandomGenes(Enum.GetNames(typeof(GeneNames)).Length);
+        moveSpeed *= genes.values[(int)GeneNames.Speed];
+        hungerTimeFactor *= genes.values[(int)GeneNames.Hunger];
+        thirstTimeFactor *= genes.values[(int)GeneNames.Thirst];
+        staminaTimeFactor *= genes.values[(int)GeneNames.Stamina];
+        desireTimeFactor *= genes.values[(int)GeneNames.Desire];
+        lifespanTimeFactor *= genes.values[(int)GeneNames.Lifespan];
         material.color = (genes.isMale) ? maleColour : femaleColour;
 
         ChooseNextAction();
