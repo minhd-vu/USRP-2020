@@ -2,6 +2,8 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+/Assets/Low Poly Nature Pack
+/Assets/polyperfect
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -59,3 +61,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/_TerrainAutoUpgrade.meta
+Assets/_TerrainAutoUpgrade/layer_ground-cracked_COL_512ce1cb0bcc2f192c7.terrainlayer
+Assets/_TerrainAutoUpgrade/layer_ground-cracked_COL_512ce1cb0bcc2f192c7.terrainlayer.meta
+Assets/Low Poly Nature Pack.meta
+Assets/polyperfect.meta
