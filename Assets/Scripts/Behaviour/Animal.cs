@@ -41,6 +41,7 @@ public class Animal : LivingEntity
     public float desire;
     public float lifespan;
 
+    bool canReproduce;
     private enum GeneNames
     {
         Speed = 0,
@@ -79,13 +80,14 @@ public class Animal : LivingEntity
         moveFromCoord = coord;
 
         genes = Genes.RandomGenes(Enum.GetNames(typeof(GeneNames)).Length);
-        moveSpeed *= genes.values[(int)GeneNames.Speed];
+        moveSpeed += 0.1f * genes.values[(int)GeneNames.Speed];
         hungerTimeFactor *= genes.values[(int)GeneNames.Hunger];
         thirstTimeFactor *= genes.values[(int)GeneNames.Thirst];
         staminaTimeFactor *= genes.values[(int)GeneNames.Stamina];
         desireTimeFactor *= genes.values[(int)GeneNames.Desire];
         lifespanTimeFactor *= genes.values[(int)GeneNames.Lifespan];
         material.color = (genes.isMale) ? maleColour : femaleColour;
+        canReproduce = true;
 
         ChooseNextAction();
     }
@@ -96,7 +98,10 @@ public class Animal : LivingEntity
         hunger += Time.deltaTime / hungerTimeFactor;
         thirst += Time.deltaTime / thirstTimeFactor;
         stamina += Time.deltaTime / staminaTimeFactor;
-        desire += Time.deltaTime / desireTimeFactor;
+        if (canReproduce && lifespan > 0.4)
+        {
+            desire += Time.deltaTime / desireTimeFactor;
+        }
         lifespan += Time.deltaTime / lifespanTimeFactor;
 
         // Animate movement. After moving a single tile, the animal will be able to choose its next action.
@@ -142,7 +147,7 @@ public class Animal : LivingEntity
         float[] states = { hunger, thirst, stamina, desire };
         float max = states.Max();
 
-        if (max == desire)
+        if (max == desire && canReproduce && lifespan > 0.5)
         {
             FindPotentialMates();
         }
@@ -250,10 +255,12 @@ public class Animal : LivingEntity
                 if (Coord.AreNeighbours(coord, mateTarget.coord))
                 {
                     LookAt(mateTarget.coord);
-                    if (mateTarget && desire > 0 && mateTarget.desire > 0)
+                    if (mateTarget && Math.Abs(mateTarget.lifespan - lifespan) < 0.1 && desire > 0 && mateTarget.desire > 0)
                     {
                         desire = 0;
                         mateTarget.desire = 0;
+                        //mateTarget.canReproduce = false;
+                        //canReproduce = false;
 
                         Animal entity = (Animal)Instantiate(prefab);
                         entity.Init(coord);
