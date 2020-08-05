@@ -22,15 +22,15 @@ public class LivingEntity : MonoBehaviour
         transform.position = Environment.tileCentres[coord.x, coord.y];
 
         // Set material to the instance material
-        var meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
-        for (int i = 0; i < meshRenderer.sharedMaterials.Length; i++)
-        {
-            if (meshRenderer.sharedMaterials[i] == material)
-            {
-                material = meshRenderer.materials[i];
-                break;
-            }
-        }
+        //var meshRenderer = transform.GetComponentInChildren<MeshRenderer>();
+        //for (int i = 0; i < meshRenderer.sharedMaterials.Length; i++)
+        //{
+        //    if (meshRenderer.sharedMaterials[i] == material)
+        //    {
+        //        material = meshRenderer.materials[i];
+        //        break;
+        //    }
+        //}
     }
 
     protected virtual void Die(CauseOfDeath cause)

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa81e76bbb0534ab4a7eac5974e8565f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 3874918950189636065}
   colourMaterialIndex: 2
   species: 4
   material: {fileID: 2100000, guid: 2c423ba3ec69b4461a99ca939a93b4ac, type: 2}
@@ -54,11 +55,14 @@ MonoBehaviour:
   mapCoord:
     x: 0
     y: 0
-  prefab: {fileID: 3874918950189636065}
   diet: 2
   currentAction: 0
+  genes:
+    isMale: 0
+    values: []
   maleColour: {r: 0.3584906, g: 0.2330951, b: 0.13020648, a: 0}
   femaleColour: {r: 0.6509434, g: 0.45010933, b: 0.3224012, a: 0}
+  moveSpeed: 1
   hungerTimeFactor: 200
   thirstTimeFactor: 200
   staminaTimeFactor: 300
