@@ -9,7 +9,7 @@ public class Environment : MonoBehaviour
     public int seed;
 
     [Header("Trees")]
-    public MeshRenderer treePrefab;
+    public MeshRenderer[] treePrefab;
     [Range(0, 1)]
     public float treeProbability;
 
@@ -375,7 +375,7 @@ public class Environment : MonoBehaviour
                         float b = col + ((float)spawnPrng.NextDouble() * 2 - 1) * colVariationFactor;
 
                         // Spawn
-                        MeshRenderer tree = Instantiate(treePrefab, tileCentres[x, y], rot);
+                        MeshRenderer tree = Instantiate(treePrefab[Random.Range(0, treePrefab.Length - 1)], tileCentres[x, y], rot);
                         tree.transform.parent = treeHolder;
                         tree.transform.localScale = Vector3.one * scale;
                         tree.material.color = new Color(r, g, b);
