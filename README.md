@@ -1,7 +1,16 @@
-# USRP-2020
-OSCAR USRP Summer 2020 - "Integrating Procedurally Generated Planets and Ecosystems"
-
-**Demo the project [here](https://minhd-vu.github.io/USRP-2020/)**.
+<!-- PROJECT LOGO -->
+<p align="center">
+  <h3 align="center">OSCAR USRP Summer 2020</h3>
+  <p align="center">
+    Integrating Procedurally Generated Planets and Ecosystems
+    <br />
+    <a href="https://minhd-vu.github.io/USRP-2020/">View Demo</a>
+    ·
+    <a href="https://github.com/github_username/USRP-2020/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/github_username/USRP-2020/issues">Request Feature</a>
+  </p>
+</p>
 
 You can find the entirety of the [research proposal](https://github.com/minhd-vu/USRP-2020/blob/master/Research%20Proposal.pdf) in the GitHub folder. It outlines my inspiration, process, timeline, and expected outcomes of this project.
 
@@ -99,6 +108,4 @@ It's also interesting how Primer graphs their simulation data over time. I hope 
 Primer defines a "gene" as the unit of natural selection. Primer also covers different gene types, such as selfish genes of altruism. I might implement altruism but not inclusive fitness, but rather kin altruism which is more common in nature.
 Additionally, Primer also discusses "the Evolution of Aggression," which I might implement once both foxes and bunnies have been completed.
 * Added gene mutations for speed.
-
-### Week 5 -
 
