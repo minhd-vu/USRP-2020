@@ -89,7 +89,7 @@ Here is a snapshot of my progress so far:
 
 You can also play the [release 0.6](https://github.com/minhd-vu/USRP-2020/releases/tag/0.6) to see it in action.
 
-### Week 3 - 
+### Week 3 - Modeling Genetics
 
 I found a YouTube channel, [Primer](https://www.youtube.com/channel/UCKzJFdi57J53Vr_BkTfN3uQ/videos), that deals with the concepts behind simulating evolution and many other factors that go in to organism and life.
 Some of their resources are coded in python, so I may be able to have a better understanding and model similar situation in my research project.
@@ -102,7 +102,7 @@ The uniqueness in Primer's simulation method is that the mutation occurs by chan
 
 In week 4, I plan on implementing the majority of the genetics. I plan on having genes that control speed, hunger, vision range, etc. I hope to set up an architecture that will allow for new genes to be added seamlessly.
 
-### Week 4 - 
+### Week 4 - Implementing Genetics
 In primer's video, "Simulating Natural Selection," they define a set of rules for the ecosystem; they have genes that control speed, energy efficieny, and sense range. I hope to incorporate the same cahracteristics in the animals in my ecosystem.
 It's also interesting how Primer graphs their simulation data over time. I hope to do this with assets in Unity. While we are trying to model population evolution in the ecosystem, the genetic makeup is simplified so that it's not necessarily realistic, but it can have insights in to the real world.
 Primer defines a "gene" as the unit of natural selection. Primer also covers different gene types, such as selfish genes of altruism. I might implement altruism but not inclusive fitness, but rather kin altruism which is more common in nature.
