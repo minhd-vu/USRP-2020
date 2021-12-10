@@ -12,6 +12,8 @@
   </p>
 </p>
 
+https://user-images.githubusercontent.com/18576915/145608626-c1b90b04-87f4-4992-ba57-bf93e45ad8fb.mp4
+
 You can find the entirety of the [research proposal](https://github.com/minhd-vu/USRP-2020/blob/master/Research%20Proposal.pdf) in the GitHub folder. It outlines my inspiration, process, timeline, and expected outcomes of this project.
 
 ### Week 1 - Research and Planning: Procedurally Generated Planets
